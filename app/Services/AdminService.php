@@ -23,6 +23,6 @@ class AdminService
 
         $token = $this->createTokenForUser($admin);
 
-        return $this->generateResponse(true, 'logged in successfully', $this->userWithToken($admin, $token));
+        return $this->generateResponse(true, 'login_success', $this->userWithToken($admin, $token));
     }
 }

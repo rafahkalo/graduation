@@ -32,7 +32,7 @@ class BaseRequest extends FormRequest
     }
 
     /**
-     * Get all of the input and files for the request including route parameters.
+     * Get all the input and files for the request including route parameters.
      *
      * @param  array|mixed|null  $keys
      */
