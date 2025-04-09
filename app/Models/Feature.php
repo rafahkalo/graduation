@@ -15,6 +15,7 @@ class Feature extends Model
     protected $fillable = [
         'name', 'translation', 'status', 'description', 'type', 'image',
     ];
+    public static $translatable = ['name'];
     protected $appends = ['translated', 'image_path'];
     protected $hidden = ['translation', 'image'];
 
