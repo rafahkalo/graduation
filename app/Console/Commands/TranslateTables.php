@@ -24,18 +24,18 @@ class TranslateTables extends Command
     {
         $modelName = class_basename($modelClass);
 
-         $modelClass::where('translation', 'LIKE', '[]')
+        $modelClass::where('translation', 'LIKE', '[]')
         //$modelClass::where('translation', '=', null)
-            ->chunk(100, function ($records) use ($modelName) {
-                foreach ($records as $record) {
-                    if (!isset($record::$translatable)) {
-                        Log::warning("Skipping {$modelName} ID {$record->id} - no translatable fields defined.");
-                        continue;
-                    }
+           ->chunk(100, function ($records) use ($modelName) {
+               foreach ($records as $record) {
+                   if (!isset($record::$translatable)) {
+                       Log::warning("Skipping {$modelName} ID {$record->id} - no translatable fields defined.");
+                       continue;
+                   }
 
-                    Log::info("Dispatching TranslateModelJob for {$modelName} ID: {$record->id}");
-                    TranslateModelJob::dispatch($record, $record::$translatable);
-                }
-            });
+                   Log::info("Dispatching TranslateModelJob for {$modelName} ID: {$record->id}");
+                   TranslateModelJob::dispatch($record, $record::$translatable);
+               }
+           });
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Common\languagesTranslation;
 use App\Models\Language;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

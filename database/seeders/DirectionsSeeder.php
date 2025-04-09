@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -22,7 +21,7 @@ class DirectionsSeeder extends Seeder
                     'en' => 'Northern',
                     'ar' => 'شمالي',
                 ]),
-                'status' => 'active'
+                'status' => 'active',
             ],
             [
                 'id' => Str::uuid(),
@@ -31,7 +30,7 @@ class DirectionsSeeder extends Seeder
                     'en' => 'Southern',
                     'ar' => 'جنوبي',
                 ]),
-                'status' => 'active'
+                'status' => 'active',
             ],
             [
                 'id' => Str::uuid(),
@@ -40,7 +39,7 @@ class DirectionsSeeder extends Seeder
                     'en' => 'Eastern',
                     'ar' => 'شرقي',
                 ]),
-                'status' => 'active'
+                'status' => 'active',
             ],
             [
                 'id' => Str::uuid(),
@@ -49,7 +48,7 @@ class DirectionsSeeder extends Seeder
                     'en' => 'Western',
                     'ar' => 'غربي',
                 ]),
-                'status' => 'active'
+                'status' => 'active',
             ],
             [
                 'id' => Str::uuid(),
@@ -58,7 +57,7 @@ class DirectionsSeeder extends Seeder
                     'en' => 'Northeastern',
                     'ar' => 'شمالي شرقي',
                 ]),
-                'status' => 'active'
+                'status' => 'active',
             ],
             [
                 'id' => Str::uuid(),
@@ -67,7 +66,7 @@ class DirectionsSeeder extends Seeder
                     'en' => 'Northwestern',
                     'ar' => 'شمالي غربي',
                 ]),
-                'status' => 'active'
+                'status' => 'active',
             ],
             [
                 'id' => Str::uuid(),
@@ -76,7 +75,7 @@ class DirectionsSeeder extends Seeder
                     'en' => 'Southeastern',
                     'ar' => 'جنوبي شرقي',
                 ]),
-                'status' => 'active'
+                'status' => 'active',
             ],
             [
                 'id' => Str::uuid(),
@@ -85,7 +84,7 @@ class DirectionsSeeder extends Seeder
                     'en' => 'Southwestern',
                     'ar' => 'جنوبي غربي',
                 ]),
-                'status' => 'active'
+                'status' => 'active',
             ],
         ];
         DB::table('directions')->insert($directions);

@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DirectionRequest;
-use App\Http\Requests\propertySection\FeatureRequest;
 use App\Services\DirectionService;
-use App\Services\propertySection\FeatureService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class DirectionController extends Controller
 {
@@ -45,5 +42,4 @@ class DirectionController extends Controller
 
         return $this->apiResponse();
     }
-
 }

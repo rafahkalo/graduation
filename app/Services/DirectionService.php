@@ -10,6 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class DirectionService
 {
     use Media;
+
     public function __construct(private DirectionRepo $directionRepo)
     {
     }
