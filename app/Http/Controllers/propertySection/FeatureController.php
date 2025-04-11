@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\propertySection;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\propertySection\FeatureRequest;
 use App\Services\propertySection\FeatureService;
 use Illuminate\Http\JsonResponse;
 
-class FeatureController extends Controller
+class FeatureController extends BaseController
 {
     public function __construct(private FeatureService $featureService)
     {

@@ -6,7 +6,7 @@ use App\Http\Requests\DirectionRequest;
 use App\Services\DirectionService;
 use Illuminate\Http\JsonResponse;
 
-class DirectionController extends Controller
+class DirectionController extends BaseController
 {
     public function __construct(private DirectionService $directionService)
     {

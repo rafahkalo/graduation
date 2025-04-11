@@ -17,4 +17,6 @@ return [
         'email' => 'email',
         'password' => 'password',
     ],
+
+    'saudi_phone_invalid' => 'your phone number is invalid',
 ];

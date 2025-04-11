@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class LanguageController extends BaseController
+class VerificationCodeController extends Controller
 {
     // Add your controller logic here
 }

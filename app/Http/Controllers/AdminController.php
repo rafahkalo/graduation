@@ -6,7 +6,7 @@ use App\Http\Requests\Auth\AdminLoginRequest;
 use App\Services\AdminService;
 use Illuminate\Http\JsonResponse;
 
-class AdminController extends Controller
+class AdminController extends BaseController
 {
     public function __construct(private AdminService $adminService)
     {
