@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\CategoryRepo;
-use App\Repositories\propertySection\FeatureRepo;
 use App\Traits\Media;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -11,6 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class CategoryService
 {
     use Media;
+
     public function __construct(private CategoryRepo $categoryRepo)
     {
     }

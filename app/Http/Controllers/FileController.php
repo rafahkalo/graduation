@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use App\Services\FileService;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+
 class FileController extends Controller
 {
     use AuthorizesRequests;
+
     public function __construct(private FileService $fileService)
     {
     }
@@ -19,6 +19,7 @@ class FileController extends Controller
     {
         $file = File::find($fileId);
         $this->authorize('viewAsAdmin', $file);
+
         return $this->fileService->renderFileContent($file);
     }
 

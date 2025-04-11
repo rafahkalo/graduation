@@ -63,7 +63,7 @@ class FileService
                 $file->original_name,
                 [
                     'Content-Type' => $mimeType,
-                    'Content-Disposition' => $contentDisposition
+                    'Content-Disposition' => $contentDisposition,
                 ]
             );
     }
@@ -75,12 +75,12 @@ class FileService
             'image/png',
             'image/gif',
             'application/pdf',
-            'text/plain'
+            'text/plain',
         ];
 
         return in_array($file->mime_type, $previewAbleTypes)
-            ? 'inline; filename="'.$file->original_name.'"'
-            : 'attachment; filename="'.$file->original_name.'"';
+            ? 'inline; filename="' . $file->original_name . '"'
+            : 'attachment; filename="' . $file->original_name . '"';
     }
 
     public function downloadFile(string $fileId): StreamedResponse

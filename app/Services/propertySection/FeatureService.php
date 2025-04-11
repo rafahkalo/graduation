@@ -10,6 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class FeatureService
 {
     use Media;
+
     public function __construct(private FeatureRepo $featureRepo)
     {
     }

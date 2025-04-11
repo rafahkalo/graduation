@@ -21,6 +21,7 @@ class Category extends Model
     public static $translatable = ['name'];
     protected $appends = ['translated', 'image_path'];
     protected $hidden = ['translation', 'image'];
+
     protected static function boot()
     {
         parent::boot();

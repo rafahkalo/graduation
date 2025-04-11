@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 trait FileTrait
 {
     /**
-     * تحميل ملف إلى التخزين المحمي
+     * تحميل ملف إلى التخزين المحمي.
      */
     protected function uploadFile(
         UploadedFile $file,
@@ -56,16 +56,17 @@ trait FileTrait
     }
 
     /**
-     * تنظيف اسم الملف الأصلي
+     * تنظيف اسم الملف الأصلي.
      */
     protected function sanitizeFileName(string $filename): string
     {
-        $cleaned = preg_replace("/[^a-zA-Z0-9\.\-_]/", "", $filename);
+        $cleaned = preg_replace("/[^a-zA-Z0-9\.\-_]/", '', $filename);
+
         return substr($cleaned, 0, 100); // تحديد طول اسم الملف
     }
 
     /**
-     * توليد مسار التخزين
+     * توليد مسار التخزين.
      */
     protected function generateStoragePath(string $directory, string $fileName): string
     {
@@ -73,7 +74,7 @@ trait FileTrait
     }
 
     /**
-     * التحقق من نوع الملف المسموح به
+     * التحقق من نوع الملف المسموح به.
      */
     protected function validateFileType(UploadedFile $file): void
     {
@@ -97,18 +98,19 @@ trait FileTrait
     }
 
     /**
-     * حذف الملف من التخزين
+     * حذف الملف من التخزين.
      */
     protected function deleteFile(string $path, string $disk = 'private'): bool
     {
         if (Storage::disk($disk)->exists($path)) {
             return Storage::disk($disk)->delete($path);
         }
+
         return false;
     }
 
     /**
-     * تنزيل الملف المحمي
+     * تنزيل الملف المحمي.
      */
     protected function downloadFile(
         string $path,

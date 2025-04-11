@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\propertySection;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Services\CategoryService;
 use Illuminate\Http\JsonResponse;

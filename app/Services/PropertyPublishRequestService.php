@@ -2,14 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\File;
-use App\Models\PropertyPublishRequest;
 use App\Repositories\PropertyPublishRequestRepo;
 use App\Traits\FileTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class PropertyPublishRequestService
 {
@@ -18,8 +15,7 @@ class PropertyPublishRequestService
     public function __construct(
         private PropertyPublishRequestRepo $publishRequestRepo,
         private FileService $fileService,
-    )
-    {
+    ) {
     }
 
     public function index(int $per_page, ?string $status = null): Collection|LengthAwarePaginator
@@ -60,8 +56,7 @@ class PropertyPublishRequestService
 
     public function update(array $data)
     {
-        if(Auth::guard('api_admin')->check())
-        {
+        if (Auth::guard('api_admin')->check()) {
             $data['admin_id'] = Auth::guard('api_admin')->id();
         }
 

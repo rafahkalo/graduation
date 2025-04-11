@@ -9,7 +9,6 @@ use Illuminate\Http\JsonResponse;
 
 class PropertyPublishRequestController extends BaseController
 {
-
     public function __construct(private PropertyPublishRequestService $publishRequestService)
     {
     }

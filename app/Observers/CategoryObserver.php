@@ -18,5 +18,4 @@ class CategoryObserver
         $columns = Category::$translatable;
         TranslateModelJob::dispatch($feature, $columns);
     }
-
 }

@@ -29,15 +29,14 @@ class File extends Model
             'image/png',
             'image/gif',
             'application/pdf',
-            'text/plain'
+            'text/plain',
         ]);
     }
 
     // صلاحيات الوصول
     public function canBeAccessedBy(User $user): bool
     {
-        return
-            $this->user_id === $user->id;
+        return $this->user_id === $user->id;
     }
 
     // مسار الملف المحمي

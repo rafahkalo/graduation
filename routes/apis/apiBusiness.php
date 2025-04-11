@@ -13,5 +13,5 @@ Route::group(['middleware' => ['localization']], function () {
 });
 
 Route::middleware(['auth:api', 'localization'])->group(function () {
-   Route::resource('property-approval-requests', PropertyPublishRequestController::class)->only(['store', 'update', 'index']);
+    Route::resource('property-approval-requests', PropertyPublishRequestController::class)->only(['store', 'update', 'index']);
 });

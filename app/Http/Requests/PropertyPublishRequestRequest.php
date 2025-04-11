@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Models\PropertyPublishRequest;
 use App\Rules\UserOwnsModel;
-use Illuminate\Foundation\Http\FormRequest;
 
 class PropertyPublishRequestRequest extends BaseRequest
 {
