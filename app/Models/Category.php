@@ -8,17 +8,19 @@ use App\Traits\Media;
 use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Feature extends Model
+class Category extends Model
 {
     use HasUuid, Translatable, Media;
-
     protected $fillable = [
-        'name', 'translation', 'status', 'description', 'type', 'image',
+        'name',
+        'translation',
+        'status',
+        'description',
+        'image',
     ];
     public static $translatable = ['name'];
     protected $appends = ['translated', 'image_path'];
     protected $hidden = ['translation', 'image'];
-
     protected static function boot()
     {
         parent::boot();

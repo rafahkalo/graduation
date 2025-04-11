@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\propertySection;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\DirectionRequest;
 use App\Services\DirectionService;
 use Illuminate\Http\JsonResponse;

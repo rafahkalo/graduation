@@ -146,6 +146,23 @@ class CoreRepository
         }
     }
 
+
+    public function updateOrCreate($attributes, $values = [])
+    {
+        DB::beginTransaction();
+        try {
+            $record = $this->model->updateOrCreate($attributes, $values);
+            DB::commit();
+
+            return $record;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Model: ' . get_class($this->model) . ' | Method: updateOrCreate | Error: ' . $e->getMessage() . ' | Line: ' . $e->getLine());
+
+            return null;
+        }
+    }
+
     public function delete(array $conditions): void
     {
         try {

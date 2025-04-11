@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Models\Tenant;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\CodeRequest;

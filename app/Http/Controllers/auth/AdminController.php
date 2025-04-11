@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\Auth\AdminLoginRequest;
 use App\Services\AdminService;
 use Illuminate\Http\JsonResponse;
