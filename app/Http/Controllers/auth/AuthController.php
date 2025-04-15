@@ -38,7 +38,7 @@ class AuthController extends BaseController
 
     public function getVerificationCode(Request $request): JsonResponse
     {
-        $result = $this->authService->getVerificationCode($request->input('phone'));
+        $result['code'] = $this->authService->getVerificationCode($request->input('phone'));
 
         return $this->apiResponse(data: $result);
     }

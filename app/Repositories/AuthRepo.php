@@ -96,7 +96,7 @@ class AuthRepo
     /**
      * التحقق من صحة الرمز المدخل.
      *
-     * @param VerificationCode|null $verificationCode
+     * @param string|null $verificationCode
      * @param string $inputCode
      * @return bool
      */
