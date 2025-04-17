@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\propertySection\PropertyController;
 use App\Http\Controllers\propertySection\PropertyPublishRequestController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +15,5 @@ Route::group(['middleware' => ['localization']], function () {
 
 Route::middleware(['auth:api', 'localization'])->group(function () {
     Route::resource('property-approval-requests', PropertyPublishRequestController::class)->only(['store', 'update', 'index']);
+    Route::resource('property', PropertyController::class)->only(['store', 'update', 'index']);
 });
