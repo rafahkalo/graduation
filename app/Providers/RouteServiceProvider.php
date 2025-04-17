@@ -25,5 +25,8 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::prefix('api/business')
             ->group(base_path('routes/apis/apiBusiness.php'));
+
+        Route::prefix('api/tenant')
+            ->group(base_path('routes/apis/apiTenant.php'));
     }
 }

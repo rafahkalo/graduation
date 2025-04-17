@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             FeatureSeeder::class,
             LanguageSeeder::class,
             DirectionsSeeder::class,
+            CountrySeeder::class,
         ]);
     }
 }
