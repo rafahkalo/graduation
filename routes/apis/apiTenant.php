@@ -8,3 +8,7 @@ Route::group(['middleware' => ['localization']], function () {
     Route::post('getVerificationCode', [AuthController::class, 'getVerificationCode']);
     Route::post('checkCode', [AuthController::class, 'checkCode']);
 });
+
+Route::middleware(['auth:api_tenant', 'localization'])->group(function () {
+    Route::post('updateProfile', [AuthController::class, 'updateProfileAsTenant']);
+});

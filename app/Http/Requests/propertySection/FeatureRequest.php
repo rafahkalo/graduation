@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\propertySection;
+namespace App\Models\Requests\propertySection;
 
-use App\Http\Requests\BaseRequest;
+use App\Models\Requests\BaseRequest;
 
 class FeatureRequest extends BaseRequest
 {

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Models\Tenant;
-use App\Http\Requests\AuthRequest;
-use App\Http\Requests\CodeRequest;
 use App\Http\Requests\updateProfileRequest;
+use App\Http\Requests\updateProfileTenantRequest;
+use App\Models\Tenant;
 use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
@@ -60,15 +59,15 @@ class AuthController extends BaseController
     public function updateProfile(updateProfileRequest $request): JsonResponse
     {
         $data = $request->validated();
+        $result = $this->authService->updateProfile($data, User::class);
 
-        $userClass = match ($data['user_type']) {
-            'tenant' => Tenant::class,
-            'business' => User::class,
-            default => throw new \InvalidArgumentException('Invalid user type')
-        };
+        return $this->apiResponse(data: $result);
+    }
 
-        unset($data['user_type']);
-        $result = $this->authService->updateProfile($data, $userClass);
+    public function updateProfileAsTenant(updateProfileTenantRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+        $result = $this->authService->updateProfile($data, Tenant::class);
 
         return $this->apiResponse(data: $result);
     }

@@ -2,9 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasUuid;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Tenant extends Model
+class Tenant extends Authenticatable implements JWTSubject
 {
-    //
+    use HasUuid, softDeletes;
+    protected $fillable = ['first_name', 'last_name', 'national_id', 'birth_date', 'gender', 'phone', 'ide', 'image'];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

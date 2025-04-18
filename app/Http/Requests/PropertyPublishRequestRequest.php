@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Models\Requests;
 
 use App\Models\PropertyPublishRequest;
 use App\Rules\UserOwnsModel;

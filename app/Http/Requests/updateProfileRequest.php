@@ -15,7 +15,6 @@ class updateProfileRequest extends BaseRequest
             'commercial_registration' => 'sometimes',
             'ide' => 'sometimes',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
-            'user_type' => 'required|in:business,tenant',
         ];
     }
 }

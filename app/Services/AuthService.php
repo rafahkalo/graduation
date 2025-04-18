@@ -2,14 +2,13 @@
 
 namespace App\Services;
 
-use App\Http\Models\Tenant;
+use App\Models\Tenant;
 use App\Models\User;
 use App\Repositories\AuthRepo;
 use App\Traits\AuthTrait;
 use App\Traits\Media;
 use Illuminate\Support\Facades\Auth;
 use Random\RandomException;
-use function PHPUnit\Framework\isEmpty;
 
 class AuthService
 {
@@ -41,7 +40,7 @@ class AuthService
         return $user;
     }
 
-    public function updateProfile(array $data, string $model, $id)
+    public function updateProfile(array $data, string $model, $id = null)
     {
         $user = $model::where('id', $id ?? Auth::id())->first();
 
