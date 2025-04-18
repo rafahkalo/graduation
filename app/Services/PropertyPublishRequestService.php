@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Repositories\PropertyPublishRequestRepo;
 use App\Traits\FileTrait;
 use Illuminate\Database\Eloquent\Collection;
@@ -15,6 +16,7 @@ class PropertyPublishRequestService
     public function __construct(
         private PropertyPublishRequestRepo $publishRequestRepo,
         private FileService $fileService,
+        private AuthService $authService,
     ) {
     }
 
@@ -49,15 +51,23 @@ class PropertyPublishRequestService
                 'property_type' => $data['property_type'],
             ]
         );
-        $this->fileService->store($data, $publishRequest->id);
+
+        if (!empty($data['files'])) {
+            $this->fileService->store($data, $publishRequest->id);
+        }
 
         return $publishRequest;
     }
 
     public function update(array $data)
     {
+        $publishRequest = $this->publishRequestRepo->show($data['property_approval_request']);
         if (Auth::guard('api_admin')->check()) {
             $data['admin_id'] = Auth::guard('api_admin')->id();
+            if($data['status'] === 'approved'){
+                // تعديل حالة المستخدم ل متحقق منه
+                $this->authService->updateProfile(['is_verified' => true], User::class, $publishRequest->user_id);
+            }
         }
 
         return $this->publishRequestRepo->update($data, $data['property_approval_request']);

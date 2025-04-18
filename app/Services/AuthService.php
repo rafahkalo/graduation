@@ -6,11 +6,14 @@ use App\Http\Models\Tenant;
 use App\Models\User;
 use App\Repositories\AuthRepo;
 use App\Traits\AuthTrait;
+use App\Traits\Media;
+use Illuminate\Support\Facades\Auth;
 use Random\RandomException;
+use function PHPUnit\Framework\isEmpty;
 
 class AuthService
 {
-    use AuthTrait;
+    use AuthTrait, Media;
 
     public function __construct(private AuthRepo $authRepository)
     {
@@ -36,6 +39,18 @@ class AuthService
         $this->authRepository->generateVerificationCode($data['phone']);
 
         return $user;
+    }
+
+    public function updateProfile(array $data, string $model, $id)
+    {
+        $user = $model::where('id', $id ?? Auth::id())->first();
+
+        if (isset($data['image'])) {
+            $this->deleteImage($user->image);
+            $data['image'] = $this->saveImage($data['image'], 'profile');
+        }
+
+        return $model::where('id', $id ?? Auth::id())->update($data);
     }
 
     public function getVerificationCode(string $phone)

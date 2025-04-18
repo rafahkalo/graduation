@@ -28,6 +28,7 @@ class User extends Authenticatable implements JWTSubject
         'commercial_registration',
         'ide',
         'image',
+        'is_verified'
     ];
     /**
      * The attributes that should be hidden for serialization.
