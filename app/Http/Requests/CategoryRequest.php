@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Requests;
+namespace App\Http\Requests;
 
 class CategoryRequest extends BaseRequest
 {

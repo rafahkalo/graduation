@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\AuthRequest;
+use App\Http\Requests\CodeRequest;
 use App\Http\Requests\updateProfileRequest;
 use App\Http\Requests\updateProfileTenantRequest;
 use App\Models\Tenant;
