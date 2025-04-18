@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\HasUuid;
-use Carbon\Traits\Units;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model

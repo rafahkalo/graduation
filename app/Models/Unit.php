@@ -2,15 +2,22 @@
 
 namespace App\Models;
 
+use App\Const\GlobalConst;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
+
 class Unit extends Model
 {
     use HasUuids, SoftDeletes;
+
+    protected $casts = [
+        'rating_details' => 'array',
+    ];
 
     protected $fillable = [
         'id',
@@ -40,34 +47,7 @@ class Unit extends Model
         'guard_name',
         'guard_phone',
     ];
-    protected $casts = [
-        'translation' => 'array',
-        'rating_details' => 'array',
-    ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($unit) {
-            $unit->rating_details = [
-                'cleanliness' => 0,
-                'accuracy' => 0,
-                'check_in' => 0,
-                'communication' => 0,
-                'value' => 0,
-                'overall_rating_1' => 0,
-                'overall_rating_2' => 0,
-                'overall_rating_3' => 0,
-                'overall_rating_4' => 0,
-                'overall_rating_5' => 0,
-                'total_reviewers' => 0,
-                'current_overall_rating' => 0,
-                'current_badge_code' => 0,
-
-            ];
-        });
-    }
     public function features(): BelongsToMany
     {
         return $this->belongsToMany(Feature::class, 'unit_features');
@@ -83,14 +63,19 @@ class Unit extends Model
         return $this->belongsTo(Category::class);
     }
 
-  /*  public function reviews(): HasMany
-    {
-        return $this->hasMany(UnitReview::class, 'unit_id');
-    }
-  */
+    /*  public function reviews(): HasMany
+      {
+          return $this->hasMany(UnitReview::class, 'unit_id');
+      }
+    */
 
     public function property(): BelongsTo
     {
         return $this->belongsTo(Property::class);
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

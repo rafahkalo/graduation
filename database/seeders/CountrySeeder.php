@@ -3,13 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Country;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 class CountrySeeder extends Seeder
 {
     public function run(): void
@@ -21,8 +17,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+93',
                 'translation' => [
                     'ar' => 'أفغانستان',
-                    'en' => 'Afghanistan'
-                ]
+                    'en' => 'Afghanistan',
+                ],
             ],
             [
                 'name' => 'Albania',
@@ -30,8 +26,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+355',
                 'translation' => [
                     'ar' => 'ألبانيا',
-                    'en' => 'Albania'
-                ]
+                    'en' => 'Albania',
+                ],
             ],
             [
                 'name' => 'Algeria',
@@ -39,8 +35,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+213',
                 'translation' => [
                     'ar' => 'الجزائر',
-                    'en' => 'Algeria'
-                ]
+                    'en' => 'Algeria',
+                ],
             ],
             [
                 'name' => 'Andorra',
@@ -48,8 +44,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+376',
                 'translation' => [
                     'ar' => 'أندورا',
-                    'en' => 'Andorra'
-                ]
+                    'en' => 'Andorra',
+                ],
             ],
             [
                 'name' => 'Angola',
@@ -57,8 +53,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+244',
                 'translation' => [
                     'ar' => 'أنغولا',
-                    'en' => 'Angola'
-                ]
+                    'en' => 'Angola',
+                ],
             ],
             [
                 'name' => 'Antigua and Barbuda',
@@ -66,8 +62,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+1-268',
                 'translation' => [
                     'ar' => 'أنتيغوا وباربودا',
-                    'en' => 'Antigua and Barbuda'
-                ]
+                    'en' => 'Antigua and Barbuda',
+                ],
             ],
             [
                 'name' => 'Argentina',
@@ -75,8 +71,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+54',
                 'translation' => [
                     'ar' => 'الأرجنتين',
-                    'en' => 'Argentina'
-                ]
+                    'en' => 'Argentina',
+                ],
             ],
             [
                 'name' => 'Armenia',
@@ -84,8 +80,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+374',
                 'translation' => [
                     'ar' => 'أرمينيا',
-                    'en' => 'Armenia'
-                ]
+                    'en' => 'Armenia',
+                ],
             ],
             [
                 'name' => 'Australia',
@@ -93,8 +89,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+61',
                 'translation' => [
                     'ar' => 'أستراليا',
-                    'en' => 'Australia'
-                ]
+                    'en' => 'Australia',
+                ],
             ],
             [
                 'name' => 'Austria',
@@ -102,8 +98,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+43',
                 'translation' => [
                     'ar' => 'النمسا',
-                    'en' => 'Austria'
-                ]
+                    'en' => 'Austria',
+                ],
             ],
             [
                 'name' => 'Azerbaijan',
@@ -111,8 +107,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+994',
                 'translation' => [
                     'ar' => 'أذربيجان',
-                    'en' => 'Azerbaijan'
-                ]
+                    'en' => 'Azerbaijan',
+                ],
             ],
             [
                 'name' => 'Bahamas',
@@ -120,8 +116,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+1-242',
                 'translation' => [
                     'ar' => 'باهاماس',
-                    'en' => 'Bahamas'
-                ]
+                    'en' => 'Bahamas',
+                ],
             ],
             [
                 'name' => 'Bahrain',
@@ -129,8 +125,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+973',
                 'translation' => [
                     'ar' => 'البحرين',
-                    'en' => 'Bahrain'
-                ]
+                    'en' => 'Bahrain',
+                ],
             ],
             [
                 'name' => 'Bangladesh',
@@ -138,8 +134,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+880',
                 'translation' => [
                     'ar' => 'بنغلاديش',
-                    'en' => 'Bangladesh'
-                ]
+                    'en' => 'Bangladesh',
+                ],
             ],
             [
                 'name' => 'Barbados',
@@ -147,8 +143,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+1-246',
                 'translation' => [
                     'ar' => 'باربادوس',
-                    'en' => 'Barbados'
-                ]
+                    'en' => 'Barbados',
+                ],
             ],
             [
                 'name' => 'Belarus',
@@ -156,8 +152,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+375',
                 'translation' => [
                     'ar' => 'بيلاروسيا',
-                    'en' => 'Belarus'
-                ]
+                    'en' => 'Belarus',
+                ],
             ],
             [
                 'name' => 'Belgium',
@@ -165,8 +161,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+32',
                 'translation' => [
                     'ar' => 'بلجيكا',
-                    'en' => 'Belgium'
-                ]
+                    'en' => 'Belgium',
+                ],
             ],
             [
                 'name' => 'Belize',
@@ -174,8 +170,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+501',
                 'translation' => [
                     'ar' => 'بليز',
-                    'en' => 'Belize'
-                ]
+                    'en' => 'Belize',
+                ],
             ],
             [
                 'name' => 'Benin',
@@ -183,8 +179,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+229',
                 'translation' => [
                     'ar' => 'بنين',
-                    'en' => 'Benin'
-                ]
+                    'en' => 'Benin',
+                ],
             ],
             [
                 'name' => 'Bhutan',
@@ -192,8 +188,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+975',
                 'translation' => [
                     'ar' => 'بوتان',
-                    'en' => 'Bhutan'
-                ]
+                    'en' => 'Bhutan',
+                ],
             ],
             [
                 'name' => 'Bolivia',
@@ -201,8 +197,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+591',
                 'translation' => [
                     'ar' => 'بوليفيا',
-                    'en' => 'Bolivia'
-                ]
+                    'en' => 'Bolivia',
+                ],
             ],
             [
                 'name' => 'Bosnia and Herzegovina',
@@ -210,8 +206,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+387',
                 'translation' => [
                     'ar' => 'البوسنة والهرسك',
-                    'en' => 'Bosnia and Herzegovina'
-                ]
+                    'en' => 'Bosnia and Herzegovina',
+                ],
             ],
             [
                 'name' => 'Botswana',
@@ -219,8 +215,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+267',
                 'translation' => [
                     'ar' => 'بوتسوانا',
-                    'en' => 'Botswana'
-                ]
+                    'en' => 'Botswana',
+                ],
             ],
             [
                 'name' => 'Brazil',
@@ -228,8 +224,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+55',
                 'translation' => [
                     'ar' => 'البرازيل',
-                    'en' => 'Brazil'
-                ]
+                    'en' => 'Brazil',
+                ],
             ],
             [
                 'name' => 'Brunei',
@@ -237,8 +233,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+673',
                 'translation' => [
                     'ar' => 'بروناي',
-                    'en' => 'Brunei'
-                ]
+                    'en' => 'Brunei',
+                ],
             ],
             [
                 'name' => 'Bulgaria',
@@ -246,8 +242,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+359',
                 'translation' => [
                     'ar' => 'بلغاريا',
-                    'en' => 'Bulgaria'
-                ]
+                    'en' => 'Bulgaria',
+                ],
             ],
             [
                 'name' => 'Burkina Faso',
@@ -255,8 +251,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+226',
                 'translation' => [
                     'ar' => 'بوركينا فاسو',
-                    'en' => 'Burkina Faso'
-                ]
+                    'en' => 'Burkina Faso',
+                ],
             ],
             [
                 'name' => 'Burundi',
@@ -264,8 +260,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+257',
                 'translation' => [
                     'ar' => 'بوروندي',
-                    'en' => 'Burundi'
-                ]
+                    'en' => 'Burundi',
+                ],
             ],
             [
                 'name' => 'Cambodia',
@@ -273,8 +269,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+855',
                 'translation' => [
                     'ar' => 'كمبوديا',
-                    'en' => 'Cambodia'
-                ]
+                    'en' => 'Cambodia',
+                ],
             ],
             [
                 'name' => 'Cameroon',
@@ -282,8 +278,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+237',
                 'translation' => [
                     'ar' => 'الكاميرون',
-                    'en' => 'Cameroon'
-                ]
+                    'en' => 'Cameroon',
+                ],
             ],
             [
                 'name' => 'Canada',
@@ -291,8 +287,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+1',
                 'translation' => [
                     'ar' => 'كندا',
-                    'en' => 'Canada'
-                ]
+                    'en' => 'Canada',
+                ],
             ],
             [
                 'name' => 'Cape Verde',
@@ -300,8 +296,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+238',
                 'translation' => [
                     'ar' => 'الرأس الأخضر',
-                    'en' => 'Cape Verde'
-                ]
+                    'en' => 'Cape Verde',
+                ],
             ],
             [
                 'name' => 'Central African Republic',
@@ -309,8 +305,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+236',
                 'translation' => [
                     'ar' => 'جمهورية أفريقيا الوسطى',
-                    'en' => 'Central African Republic'
-                ]
+                    'en' => 'Central African Republic',
+                ],
             ],
             [
                 'name' => 'Chad',
@@ -318,8 +314,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+235',
                 'translation' => [
                     'ar' => 'تشاد',
-                    'en' => 'Chad'
-                ]
+                    'en' => 'Chad',
+                ],
             ],
             [
                 'name' => 'Chile',
@@ -327,8 +323,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+56',
                 'translation' => [
                     'ar' => 'تشيلي',
-                    'en' => 'Chile'
-                ]
+                    'en' => 'Chile',
+                ],
             ],
             [
                 'name' => 'China',
@@ -336,8 +332,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+86',
                 'translation' => [
                     'ar' => 'الصين',
-                    'en' => 'China'
-                ]
+                    'en' => 'China',
+                ],
             ],
             [
                 'name' => 'Colombia',
@@ -345,8 +341,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+57',
                 'translation' => [
                     'ar' => 'كولومبيا',
-                    'en' => 'Colombia'
-                ]
+                    'en' => 'Colombia',
+                ],
             ],
             [
                 'name' => 'Comoros',
@@ -354,8 +350,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+269',
                 'translation' => [
                     'ar' => 'جزر القمر',
-                    'en' => 'Comoros'
-                ]
+                    'en' => 'Comoros',
+                ],
             ],
             [
                 'name' => 'Congo',
@@ -363,8 +359,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+242',
                 'translation' => [
                     'ar' => 'الكونغو',
-                    'en' => 'Congo'
-                ]
+                    'en' => 'Congo',
+                ],
             ],
             [
                 'name' => 'Costa Rica',
@@ -372,8 +368,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+506',
                 'translation' => [
                     'ar' => 'كوستاريكا',
-                    'en' => 'Costa Rica'
-                ]
+                    'en' => 'Costa Rica',
+                ],
             ],
             [
                 'name' => 'Croatia',
@@ -381,8 +377,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+385',
                 'translation' => [
                     'ar' => 'كرواتيا',
-                    'en' => 'Croatia'
-                ]
+                    'en' => 'Croatia',
+                ],
             ],
             [
                 'name' => 'Cuba',
@@ -390,8 +386,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+53',
                 'translation' => [
                     'ar' => 'كوبا',
-                    'en' => 'Cuba'
-                ]
+                    'en' => 'Cuba',
+                ],
             ],
             [
                 'name' => 'Cyprus',
@@ -399,8 +395,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+357',
                 'translation' => [
                     'ar' => 'قبرص',
-                    'en' => 'Cyprus'
-                ]
+                    'en' => 'Cyprus',
+                ],
             ],
             [
                 'name' => 'Czech Republic',
@@ -408,8 +404,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+420',
                 'translation' => [
                     'ar' => 'جمهورية التشيك',
-                    'en' => 'Czech Republic'
-                ]
+                    'en' => 'Czech Republic',
+                ],
             ],
             [
                 'name' => 'Denmark',
@@ -417,8 +413,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+45',
                 'translation' => [
                     'ar' => 'الدنمارك',
-                    'en' => 'Denmark'
-                ]
+                    'en' => 'Denmark',
+                ],
             ],
             [
                 'name' => 'Djibouti',
@@ -426,8 +422,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+253',
                 'translation' => [
                     'ar' => 'جيبوتي',
-                    'en' => 'Djibouti'
-                ]
+                    'en' => 'Djibouti',
+                ],
             ],
             [
                 'name' => 'Dominica',
@@ -435,8 +431,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+1-767',
                 'translation' => [
                     'ar' => 'دومينيكا',
-                    'en' => 'Dominica'
-                ]
+                    'en' => 'Dominica',
+                ],
             ],
             [
                 'name' => 'Dominican Republic',
@@ -444,8 +440,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+1-809, +1-829, +1-849',
                 'translation' => [
                     'ar' => 'جمهورية الدومينيكان',
-                    'en' => 'Dominican Republic'
-                ]
+                    'en' => 'Dominican Republic',
+                ],
             ],
             [
                 'name' => 'Ecuador',
@@ -453,8 +449,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+593',
                 'translation' => [
                     'ar' => 'الإكوادور',
-                    'en' => 'Ecuador'
-                ]
+                    'en' => 'Ecuador',
+                ],
             ],
             [
                 'name' => 'Egypt',
@@ -462,8 +458,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+20',
                 'translation' => [
                     'ar' => 'مصر',
-                    'en' => 'Egypt'
-                ]
+                    'en' => 'Egypt',
+                ],
             ],
             [
                 'name' => 'El Salvador',
@@ -471,8 +467,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+503',
                 'translation' => [
                     'ar' => 'السلفادور',
-                    'en' => 'El Salvador'
-                ]
+                    'en' => 'El Salvador',
+                ],
             ],
             [
                 'name' => 'Equatorial Guinea',
@@ -480,8 +476,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+240',
                 'translation' => [
                     'ar' => 'غينيا الاستوائية',
-                    'en' => 'Equatorial Guinea'
-                ]
+                    'en' => 'Equatorial Guinea',
+                ],
             ],
             [
                 'name' => 'Eritrea',
@@ -489,8 +485,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+291',
                 'translation' => [
                     'ar' => 'إريتريا',
-                    'en' => 'Eritrea'
-                ]
+                    'en' => 'Eritrea',
+                ],
             ],
             [
                 'name' => 'Estonia',
@@ -498,8 +494,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+372',
                 'translation' => [
                     'ar' => 'إستونيا',
-                    'en' => 'Estonia'
-                ]
+                    'en' => 'Estonia',
+                ],
             ],
             [
                 'name' => 'Eswatini',
@@ -507,8 +503,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+268',
                 'translation' => [
                     'ar' => 'إسواتيني',
-                    'en' => 'Eswatini'
-                ]
+                    'en' => 'Eswatini',
+                ],
             ],
             [
                 'name' => 'Ethiopia',
@@ -516,8 +512,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+251',
                 'translation' => [
                     'ar' => 'إثيوبيا',
-                    'en' => 'Ethiopia'
-                ]
+                    'en' => 'Ethiopia',
+                ],
             ],
             [
                 'name' => 'Fiji',
@@ -525,8 +521,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+679',
                 'translation' => [
                     'ar' => 'فيجي',
-                    'en' => 'Fiji'
-                ]
+                    'en' => 'Fiji',
+                ],
             ],
             [
                 'name' => 'Finland',
@@ -534,8 +530,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+358',
                 'translation' => [
                     'ar' => 'فنلندا',
-                    'en' => 'Finland'
-                ]
+                    'en' => 'Finland',
+                ],
             ],
             [
                 'name' => 'France',
@@ -543,8 +539,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+33',
                 'translation' => [
                     'ar' => 'فرنسا',
-                    'en' => 'France'
-                ]
+                    'en' => 'France',
+                ],
             ],
             [
                 'name' => 'Gabon',
@@ -552,8 +548,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+241',
                 'translation' => [
                     'ar' => 'الغابون',
-                    'en' => 'Gabon'
-                ]
+                    'en' => 'Gabon',
+                ],
             ],
             [
                 'name' => 'Gambia',
@@ -561,8 +557,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+220',
                 'translation' => [
                     'ar' => 'غامبيا',
-                    'en' => 'Gambia'
-                ]
+                    'en' => 'Gambia',
+                ],
             ],
             [
                 'name' => 'Georgia',
@@ -570,8 +566,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+995',
                 'translation' => [
                     'ar' => 'جورجيا',
-                    'en' => 'Georgia'
-                ]
+                    'en' => 'Georgia',
+                ],
             ],
             [
                 'name' => 'Germany',
@@ -579,8 +575,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+49',
                 'translation' => [
                     'ar' => 'ألمانيا',
-                    'en' => 'Germany'
-                ]
+                    'en' => 'Germany',
+                ],
             ],
             [
                 'name' => 'Ghana',
@@ -588,8 +584,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+233',
                 'translation' => [
                     'ar' => 'غانا',
-                    'en' => 'Ghana'
-                ]
+                    'en' => 'Ghana',
+                ],
             ],
             [
                 'name' => 'Greece',
@@ -597,8 +593,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+30',
                 'translation' => [
                     'ar' => 'اليونان',
-                    'en' => 'Greece'
-                ]
+                    'en' => 'Greece',
+                ],
             ],
             [
                 'name' => 'Grenada',
@@ -606,8 +602,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+1-473',
                 'translation' => [
                     'ar' => 'غرينادا',
-                    'en' => 'Grenada'
-                ]
+                    'en' => 'Grenada',
+                ],
             ],
             [
                 'name' => 'Guatemala',
@@ -615,8 +611,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+502',
                 'translation' => [
                     'ar' => 'غواتيمالا',
-                    'en' => 'Guatemala'
-                ]
+                    'en' => 'Guatemala',
+                ],
             ],
             [
                 'name' => 'Guinea',
@@ -624,8 +620,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+224',
                 'translation' => [
                     'ar' => 'غينيا',
-                    'en' => 'Guinea'
-                ]
+                    'en' => 'Guinea',
+                ],
             ],
             [
                 'name' => 'Guinea-Bissau',
@@ -633,8 +629,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+245',
                 'translation' => [
                     'ar' => 'غينيا بيساو',
-                    'en' => 'Guinea-Bissau'
-                ]
+                    'en' => 'Guinea-Bissau',
+                ],
             ],
             [
                 'name' => 'Guyana',
@@ -642,8 +638,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+592',
                 'translation' => [
                     'ar' => 'غيانا',
-                    'en' => 'Guyana'
-                ]
+                    'en' => 'Guyana',
+                ],
             ],
             [
                 'name' => 'Haiti',
@@ -651,8 +647,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+509',
                 'translation' => [
                     'ar' => 'هايتي',
-                    'en' => 'Haiti'
-                ]
+                    'en' => 'Haiti',
+                ],
             ],
             [
                 'name' => 'Honduras',
@@ -660,8 +656,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+504',
                 'translation' => [
                     'ar' => 'هندوراس',
-                    'en' => 'Honduras'
-                ]
+                    'en' => 'Honduras',
+                ],
             ],
             [
                 'name' => 'Hungary',
@@ -669,8 +665,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+36',
                 'translation' => [
                     'ar' => 'المجر',
-                    'en' => 'Hungary'
-                ]
+                    'en' => 'Hungary',
+                ],
             ],
             [
                 'name' => 'Iceland',
@@ -678,8 +674,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+354',
                 'translation' => [
                     'ar' => 'آيسلندا',
-                    'en' => 'Iceland'
-                ]
+                    'en' => 'Iceland',
+                ],
             ],
             [
                 'name' => 'India',
@@ -687,8 +683,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+91',
                 'translation' => [
                     'ar' => 'الهند',
-                    'en' => 'India'
-                ]
+                    'en' => 'India',
+                ],
             ],
             [
                 'name' => 'Indonesia',
@@ -696,8 +692,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+62',
                 'translation' => [
                     'ar' => 'إندونيسيا',
-                    'en' => 'Indonesia'
-                ]
+                    'en' => 'Indonesia',
+                ],
             ],
             [
                 'name' => 'Syria',
@@ -705,8 +701,8 @@ class CountrySeeder extends Seeder
                 'phone_code' => '+963',
                 'translation' => [
                     'ar' => 'سوريا',
-                    'en' => 'Syria'
-                ]
+                    'en' => 'Syria',
+                ],
             ],
         ];
 

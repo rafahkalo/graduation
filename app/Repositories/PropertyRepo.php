@@ -11,6 +11,7 @@ class PropertyRepo extends CoreRepository
     ) {
         parent::__construct($property);
     }
+
     public function storeProperty(array $data)
     {
         if (!isset($data['property_id'])) {
@@ -19,5 +20,4 @@ class PropertyRepo extends CoreRepository
             return $this->update($data, $data['property_id']);
         }
     }
-
 }

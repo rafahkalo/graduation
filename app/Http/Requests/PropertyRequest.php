@@ -6,9 +6,7 @@ use App\Models\Property;
 use App\Models\Unit;
 use App\Rules\SaudiPhoneRule;
 use App\Rules\UserOwnsModel;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class PropertyRequest extends BaseRequest
 {
@@ -49,14 +47,14 @@ class PropertyRequest extends BaseRequest
                 'exists:properties,id',
                 new UserOwnsModel(Property::class),
             ],
-            'main_image' => 'nullable',
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'category_id' =>'nullable|exists:categories,id',
-            'images' => 'sometimes|array',
             'guard_name' => 'sometimes',
             'video' => 'sometimes',
             'features' => 'nullable|array',
-            'guard_phone' => ['sometimes', new SaudiPhoneRule()],
+            'guard_phone' => ['nullable', new SaudiPhoneRule()],
             'location' => 'sometimes|array',
+            'images' => 'sometimes|array',
         ];
     }
 

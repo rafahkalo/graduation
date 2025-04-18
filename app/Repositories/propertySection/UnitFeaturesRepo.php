@@ -2,9 +2,6 @@
 
 namespace App\Repositories\propertySection;
 
-use App\Models\Feature;
-use App\Models\UnitFeatures;
-
 class UnitFeaturesRepo
 {
     public function updateOrCreateDataOfUnit(array $items, $unitId, string $modelClass, string $relationTable, string $foreignKey): void

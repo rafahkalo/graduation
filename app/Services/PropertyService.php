@@ -13,6 +13,7 @@ use App\Traits\Media;
 class PropertyService
 {
     use Media;
+
     public function __construct(
         private PropertyRepo $propertyRepo,
         private LocationRepo $locationRepo,
@@ -25,7 +26,8 @@ class PropertyService
        */
     ) {
     }
-    public function storeProperty(array $data): null|array
+
+    public function store(array $data): null|array
     {
         $response = [];
         $requiredKeys = ['description1', 'name', 'location', 'property_id'];
@@ -43,20 +45,19 @@ class PropertyService
 
         if (isset($data['unit_id']) || isset($data['title'])) {
 
-            if (isset($data['main_image'])) {
-                $data['main_image'] = $this->saveImage($data['main_image'], 'units');
+            if (isset($data['main_image'])){
+             $data['main_image'] = $this->saveImage($data['main_image'], 'units');
             }
+
             $unit = $this->unitService->storeUnit($data);
 
             if (isset($data['features'])) {
                 $this->unitFeaturesRepo->updateOrCreateDataOfUnit($data['features'], $unit->id, Feature::class, UnitFeatures::class, 'feature_id');
             }
-/*
-
 
             if (array_key_exists('images', $data)) {
-                $unit->addImages($data['images'], 'unit');
-            }*/
+                $this->saveImages($data['images'], $unit,'units');
+            }
 
             $response['unit'] = $unit ?? [];
         }
