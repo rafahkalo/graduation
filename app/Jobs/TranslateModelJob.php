@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Stichoza\GoogleTranslate\GoogleTranslate;
+use Throwable;
 
 class TranslateModelJob implements ShouldQueue
 {
@@ -88,5 +89,12 @@ class TranslateModelJob implements ShouldQueue
         } catch (\Exception $e) {
             Log::error("Failed to update translations for model ID {$this->model->id}: {$e->getMessage()}");
         }
+    }
+
+    public function failed(Throwable $exception)
+    {
+        // يُنفَّذ هذا تلقائيًا عندما تنفد جميع المحاولات
+        Log::error("TranslateModelJob failed permanently for model {$this->model->getTable()} ID {$this->model->id}. Exception: {$exception->getMessage()}");
+        // إذا أردت، ترسل تنبيه أو بريد هنا
     }
 }

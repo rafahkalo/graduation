@@ -15,7 +15,7 @@ class CountryRepo
         return QueryBuilder::for(Country::class)
             ->allowedFilters([
                 AllowedFilter::custom('search', new MultiColumnSearchFilter([
-                    'name', 'code', 'phone_code',
+                    'code', 'phone_code', 'translation'
                 ])),
             ])
             ->allowedSorts(['created_at'])

@@ -2,7 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Filters\MultiColumnSearchFilter;
+use App\Models\Country;
 use App\Models\Property;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 class PropertyRepo extends CoreRepository
 {
@@ -21,12 +25,15 @@ class PropertyRepo extends CoreRepository
         }
     }
 
-    public function filterProperties(int $per_page)
+        public function filterCountries(int $per_page): LengthAwarePaginator
     {
         return QueryBuilder::for(Property::class)
-            ->allowedFilters(['name', 'description1', 'user_id'])
-            ->allowedSorts('created_at', 'desc')
-            ->allowedIncludes('user', 'units')
+            ->allowedFilters([
+                AllowedFilter::custom('search', new MultiColumnSearchFilter([
+                    'translation'
+                ])),
+            ])
+            ->allowedSorts(['created_at'])
             ->paginate($per_page);
     }
 }

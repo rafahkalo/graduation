@@ -21,9 +21,9 @@ class PropertyService
         private UnitFeaturesRepo $unitFeaturesRepo,
     ) {}
 
-    public function index(int $per_page, array $filters)
+    public function index(int $per_page)
     {
-        return $this->propertyRepo->index($per_page, $filters);
+        return $this->propertyRepo->filterCountries($per_page);
     }
 
     public function store(array $data): ?array

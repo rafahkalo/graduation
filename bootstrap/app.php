@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ApiHeaders;
 use App\Http\Middleware\EnsureUserIsVerified;
 use App\Http\Middleware\LanguageSwitcher;
 use Illuminate\Foundation\Application;
@@ -14,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->append(ApiHeaders::class);
         $middleware->alias([
             'localization' => LanguageSwitcher::class,
             'is_verified' => EnsureUserIsVerified::class,

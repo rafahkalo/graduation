@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Traits\HasUuid;
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-    use HasUuid;
+    use HasUuid, Translatable;
 
     protected $table = 'countries';
 
@@ -18,4 +19,7 @@ class Country extends Model
     public $incrementing = false;
 
     protected $fillable = ['code', 'name', 'phone_code', 'translation'];
+    protected $appends = ['translated'];
+
+    protected $hidden = ['translation'];
 }

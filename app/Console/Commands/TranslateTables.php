@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Jobs\TranslateModelJob;
 use App\Models\Direction;
+use App\Models\Property;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -15,7 +16,7 @@ class TranslateTables extends Command
 
     public function handle()
     {
-        $this->dispatchTranslation(Direction::class);
+        $this->dispatchTranslation(Property::class);
         $this->info('All untranslated records have been dispatched for translation.');
 
         return Command::SUCCESS;
@@ -25,8 +26,8 @@ class TranslateTables extends Command
     {
         $modelName = class_basename($modelClass);
 
-        $modelClass::where('translation', 'LIKE', '[]')
-        // $modelClass::where('translation', '=', null)
+        //$modelClass::where('translation', 'LIKE', '[]')
+         $modelClass::where('translation', '=', null)
             ->chunk(100, function ($records) use ($modelName) {
                 foreach ($records as $record) {
                     if (! isset($record::$translatable)) {

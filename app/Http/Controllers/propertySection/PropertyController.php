@@ -13,9 +13,7 @@ class PropertyController extends BaseController
 
     public function index()
     {
-        $result = $this->propertyService->index(request()->per_page ?? 8, array_filter(request()->only([
-
-        ])));
+        $result = $this->propertyService->index(request()->per_page ?? 8);
 
         return $this->apiResponse(data: $result);
 
