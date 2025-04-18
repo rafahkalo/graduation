@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasUuid, Translatable, Media;
+    use HasUuid, Media, Translatable;
+
     protected $fillable = [
         'name',
         'translation',
@@ -18,8 +19,11 @@ class Category extends Model
         'description',
         'image',
     ];
+
     public static $translatable = ['name'];
+
     protected $appends = ['translated', 'image_path'];
+
     protected $hidden = ['translation', 'image'];
 
     protected static function boot()
@@ -34,6 +38,6 @@ class Category extends Model
 
     public function getImagePathAttribute(): string
     {
-        return GlobalConst::SERVER_PATH . '/' . 'storage' . '/' . $this->image;
+        return GlobalConst::SERVER_PATH.'/'.'storage'.'/'.$this->image;
     }
 }

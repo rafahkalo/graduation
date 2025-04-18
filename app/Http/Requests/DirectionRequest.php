@@ -24,7 +24,7 @@ class DirectionRequest extends BaseRequest
                 'exists:directions,id',
             ],
             'name' => 'sometimes',
-            'status'=>'sometimes|in:active,inactive',
+            'status' => 'sometimes|in:active,inactive',
         ];
     }
 }

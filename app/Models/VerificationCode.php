@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VerificationCode extends Model
 {
     use HasUuids;
+
     protected $fillable = [
         'phone',
         'code',

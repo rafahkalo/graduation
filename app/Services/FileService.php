@@ -22,7 +22,7 @@ class FileService
             foreach ($data['files'] as $file) {
                 $fileInfo = $this->uploadFile(
                     $file,
-                    'files/' . $id,
+                    'files/'.$id,
                 );
 
                 $fileRecord = File::create([
@@ -50,7 +50,7 @@ class FileService
 
     public function renderFileContent(File $file): StreamedResponse
     {
-        if (!Storage::disk($file->disk)->exists($file->storage_path)) {
+        if (! Storage::disk($file->disk)->exists($file->storage_path)) {
             abort(404);
         }
 
@@ -79,8 +79,8 @@ class FileService
         ];
 
         return in_array($file->mime_type, $previewAbleTypes)
-            ? 'inline; filename="' . $file->original_name . '"'
-            : 'attachment; filename="' . $file->original_name . '"';
+            ? 'inline; filename="'.$file->original_name.'"'
+            : 'attachment; filename="'.$file->original_name.'"';
     }
 
     public function downloadFile(string $fileId): StreamedResponse
@@ -89,7 +89,7 @@ class FileService
 
         $path = $file->storage_path;
 
-        if (!Storage::disk($file->disk)->exists($path)) {
+        if (! Storage::disk($file->disk)->exists($path)) {
             abort(404, 'الملف غير موجود.');
         }
 

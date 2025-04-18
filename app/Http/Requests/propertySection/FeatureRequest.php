@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Requests\propertySection;
+namespace App\Http\Requests\propertySection;
 
-use App\Models\Requests\BaseRequest;
+use App\Http\Requests\BaseRequest;
 
 class FeatureRequest extends BaseRequest
 {
@@ -31,7 +31,7 @@ class FeatureRequest extends BaseRequest
             'name' => 'sometimes',
             'description' => 'nullable|string',
             'type' => 'sometimes|in:safety_element,main_service,feature',
-            'status'=>'sometimes|in:active,inactive',
+            'status' => 'sometimes|in:active,inactive',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }

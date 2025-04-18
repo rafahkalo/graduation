@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -17,9 +18,9 @@ return new class extends Migration {
             $table->string('company_name')->nullable();
             $table->string('phone')->unique();
             $table->text('about')->nullable();
-            //رقم السجل التجاري
+            // رقم السجل التجاري
             $table->string('commercial_registration')->nullable();
-            //رقم الهوية
+            // رقم الهوية
             $table->string('ide')->nullable();
             $table->string('image')->nullable();
             $table->rememberToken();

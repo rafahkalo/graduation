@@ -18,6 +18,6 @@ return [
     ],
     'saudi_phone_invalid' => 'شروط الرقم غير صحيحة',
 
-        'status_change_not_allowed' => 'لا يمكنك تغيير الحالة إلى "جاري الانتظار" بعد أن تم رفض الطلب.',
-        'status_updated_success' => 'تم تحديث الحالة بنجاح.',
+    'status_change_not_allowed' => 'لا يمكنك تغيير الحالة إلى "جاري الانتظار" بعد أن تم رفض الطلب.',
+    'status_updated_success' => 'تم تحديث الحالة بنجاح.',
 ];

@@ -12,7 +12,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable, HasUuids, SoftDeletes;
+    use HasFactory, HasUuids, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -28,8 +28,9 @@ class User extends Authenticatable implements JWTSubject
         'commercial_registration',
         'ide',
         'image',
-        'is_verified'
+        'is_verified',
     ];
+
     /**
      * The attributes that should be hidden for serialization.
      *

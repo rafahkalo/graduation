@@ -17,8 +17,7 @@ class PropertyPublishRequestService
         private PropertyPublishRequestRepo $publishRequestRepo,
         private FileService $fileService,
         private AuthService $authService,
-    ) {
-    }
+    ) {}
 
     public function index(int $per_page, ?string $status = null): Collection|LengthAwarePaginator
     {
@@ -52,7 +51,7 @@ class PropertyPublishRequestService
             ]
         );
 
-        if (!empty($data['files'])) {
+        if (! empty($data['files'])) {
             $this->fileService->store($data, $publishRequest->id);
         }
 
@@ -64,7 +63,7 @@ class PropertyPublishRequestService
         $publishRequest = $this->publishRequestRepo->show($data['property_approval_request']);
         if (Auth::guard('api_admin')->check()) {
             $data['admin_id'] = Auth::guard('api_admin')->id();
-            if($data['status'] === 'approved'){
+            if ($data['status'] === 'approved') {
                 // تعديل حالة المستخدم ل متحقق منه
                 $this->authService->updateProfile(['is_verified' => true], User::class, $publishRequest->user_id);
             }

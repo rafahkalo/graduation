@@ -14,8 +14,7 @@ class AuthRepo
     /**
      * حذف رمز التحقق بناءً على رقم الهاتف أو الكائن.
      *
-     * @param string|VerificationCode $verificationCode
-     * @return void
+     * @param  string|VerificationCode  $verificationCode
      */
     public function deleteVerificationCode($verificationCode): void
     {
@@ -28,10 +27,6 @@ class AuthRepo
 
     /**
      * إنشاء مستخدم جديد أو استعادة مستخدم محذوف.
-     *
-     * @param string $phone
-     * @param string $model
-     * @return Model|Builder
      */
     public function createOrRestoreUser(string $phone, string $model): Model|Builder
     {
@@ -44,23 +39,19 @@ class AuthRepo
     /**
      * إنشاء رمز تحقق جديد.
      *
-     * @param string $phone
-     * @return void
      * @throws RandomException
      */
     public function generateVerificationCode(string $phone): void
     {
         VerificationCode::create([
-           'code' => $this->generateUniqueCode(),
-           'phone' => $phone,
+            'code' => $this->generateUniqueCode(),
+            'phone' => $phone,
         ]);
     }
 
     /**
      * توليد رمز تحقق.
      *
-     * @param int $length
-     * @return string
      * @throws RandomException
      */
     public function generateUniqueCode(int $length = 4): string
@@ -79,7 +70,7 @@ class AuthRepo
         $count = VerificationCode::where('phone', $phone)
             ->whereDate('created_at', $today)
             ->count();
-        Log::info("Count for {$phone} today: " . $count);
+        Log::info("Count for {$phone} today: ".$count);
 
         return $count < $maxPerDay;
     }
@@ -95,10 +86,6 @@ class AuthRepo
 
     /**
      * التحقق من صحة الرمز المدخل.
-     *
-     * @param string|null $verificationCode
-     * @param string $inputCode
-     * @return bool
      */
     public function isCodeValid(?string $verificationCode, string $inputCode): bool
     {

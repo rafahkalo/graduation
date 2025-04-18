@@ -27,7 +27,7 @@ class CategoryRequest extends BaseRequest
             ],
             'name' => 'sometimes',
             'description' => 'nullable|string',
-            'status'=>'sometimes|in:active,inactive',
+            'status' => 'sometimes|in:active,inactive',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }

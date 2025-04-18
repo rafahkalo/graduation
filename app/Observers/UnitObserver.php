@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Const\GlobalConst;
-use App\Models\Image;
 use App\Models\Unit;
 use App\Traits\Media;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +33,7 @@ class UnitObserver
     public function updating(Unit $unit)
     {
         // هل الصور الجديدة مرفقة مع الموديل؟
-        if (!empty($unit->images)) {
+        if (! empty($unit->images)) {
             // حذف الصور القديمة المرتبطة بالوحدة
             $oldImages = $unit->images;
 

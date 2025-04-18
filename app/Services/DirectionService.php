@@ -11,9 +11,7 @@ class DirectionService
 {
     use Media;
 
-    public function __construct(private DirectionRepo $directionRepo)
-    {
-    }
+    public function __construct(private DirectionRepo $directionRepo) {}
 
     public function index(int $per_page, ?string $status = null): Collection|LengthAwarePaginator
     {

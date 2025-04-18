@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Location extends Model
 {
     use HasUuids, SoftDeletes;
+
     protected $fillable = [
         'lng',
         'lat',

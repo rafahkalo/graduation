@@ -9,9 +9,7 @@ use Illuminate\Http\JsonResponse;
 
 class PropertyPublishRequestController extends BaseController
 {
-    public function __construct(private PropertyPublishRequestService $publishRequestService)
-    {
-    }
+    public function __construct(private PropertyPublishRequestService $publishRequestService) {}
 
     public function index(): JsonResponse
     {

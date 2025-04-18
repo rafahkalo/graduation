@@ -11,9 +11,7 @@ class FeatureService
 {
     use Media;
 
-    public function __construct(private FeatureRepo $featureRepo)
-    {
-    }
+    public function __construct(private FeatureRepo $featureRepo) {}
 
     public function index(int $per_page, ?string $status = null): Collection|LengthAwarePaginator
     {

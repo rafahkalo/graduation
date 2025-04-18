@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PropertyPublishRequest extends Model
 {
     use HasUuid;
+
     protected $fillable = [
         'user_id',
         'status',

@@ -48,11 +48,11 @@ class PropertyRequest extends BaseRequest
                 new UserOwnsModel(Property::class),
             ],
             'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'category_id' =>'nullable|exists:categories,id',
+            'category_id' => 'nullable|exists:categories,id',
             'guard_name' => 'sometimes',
             'video' => 'sometimes',
             'features' => 'nullable|array',
-            'guard_phone' => ['nullable', new SaudiPhoneRule()],
+            'guard_phone' => ['nullable', new SaudiPhoneRule],
             'location' => 'sometimes|array',
             'images' => 'sometimes|array',
         ];
@@ -70,7 +70,7 @@ class PropertyRequest extends BaseRequest
             'location' => 'sometimes|array',
         ];
 
-        if (!$this->isAdminRequest()) {
+        if (! $this->isAdminRequest()) {
             $rules['property'][] = new UserOwnsModel(Property::class);
         }
 
@@ -99,7 +99,7 @@ class PropertyRequest extends BaseRequest
             $price = $this->input('price');
             $deposit = $this->input('deposit');
 
-            if (!is_null($price) && !is_null($deposit) && $deposit >= $price) {
+            if (! is_null($price) && ! is_null($deposit) && $deposit >= $price) {
                 $validator->errors()->add('deposit', 'The deposit must be less than the price.');
             }
         });

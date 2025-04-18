@@ -20,7 +20,7 @@ return [
 
     'saudi_phone_invalid' => 'your phone number is invalid',
 
-        'status_change_not_allowed' => 'You cannot change the status to "pending" after it has been rejected.',
-        'status_updated_success' => 'The status has been updated successfully.',
+    'status_change_not_allowed' => 'You cannot change the status to "pending" after it has been rejected.',
+    'status_updated_success' => 'The status has been updated successfully.',
 
 ];

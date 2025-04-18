@@ -48,13 +48,13 @@ class PropertyPublishRequestRequest extends BaseRequest
         $validator->after(function ($validator) {
             $approvalRequestId = $this->route('property_approval_request') ?? $this->input('property_approval_request');
 
-            if (!$approvalRequestId) {
+            if (! $approvalRequestId) {
                 return; // ID غير موجود في البيانات المرسلة
             }
 
             $approvalRequest = PropertyPublishRequest::find($approvalRequestId);
 
-            if (!$approvalRequest) {
+            if (! $approvalRequest) {
                 return; // القاعدة exists ستتعامل مع هذا
             }
 

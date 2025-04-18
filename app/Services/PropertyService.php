@@ -24,15 +24,14 @@ class PropertyService
 
         private MainItemRepo $mainItemRepo
        */
-    ) {
-    }
+    ) {}
 
-    public function store(array $data): null|array
+    public function store(array $data): ?array
     {
         $response = [];
         $requiredKeys = ['description1', 'name', 'location', 'property_id'];
 
-        if (!empty(array_intersect_key(array_flip($requiredKeys), $data))) {
+        if (! empty(array_intersect_key(array_flip($requiredKeys), $data))) {
             $property = $this->propertyRepo->storeProperty($data);
             $data['property_id'] = $property->id ?? $data['property_id'];
 
@@ -45,8 +44,8 @@ class PropertyService
 
         if (isset($data['unit_id']) || isset($data['title'])) {
 
-            if (isset($data['main_image'])){
-             $data['main_image'] = $this->saveImage($data['main_image'], 'units');
+            if (isset($data['main_image'])) {
+                $data['main_image'] = $this->saveImage($data['main_image'], 'units');
             }
 
             $unit = $this->unitService->storeUnit($data);
@@ -56,7 +55,7 @@ class PropertyService
             }
 
             if (array_key_exists('images', $data)) {
-                $this->saveImages($data['images'], $unit,'units');
+                $this->saveImages($data['images'], $unit, 'units');
             }
 
             $response['unit'] = $unit ?? [];

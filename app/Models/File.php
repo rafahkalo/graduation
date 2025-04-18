@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     use HasUuid;
+
     protected $fillable = [
         'model_type',
         'model_id',

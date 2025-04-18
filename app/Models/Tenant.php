@@ -10,6 +10,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class Tenant extends Authenticatable implements JWTSubject
 {
     use HasUuid, softDeletes;
+
     protected $fillable = ['first_name', 'last_name', 'national_id', 'birth_date', 'gender', 'phone', 'ide', 'image'];
 
     public function getJWTIdentifier()

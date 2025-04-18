@@ -9,7 +9,7 @@ class CodeRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'phone' => ['required', new SaudiPhoneRule()],
+            'phone' => ['required', new SaudiPhoneRule],
             'code' => 'required|size:4',
             'user_type' => 'required|in:business,tenant',
         ];

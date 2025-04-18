@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\DB;
 class ActiveUnit implements Rule
 {
     protected $reservation_type;
+
     protected $errorMessage; // متغير لحفظ رسالة الخطأ المخصصة
 
     /**
      * Constructor to optionally filter by type.
      *
-     * @param string|null $reservation_type
+     * @param  string|null  $reservation_type
      */
     public function __construct($reservation_type = null)
     {
@@ -23,8 +24,8 @@ class ActiveUnit implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $value
+     * @param  string  $attribute
+     * @param  mixed  $value
      * @return bool
      */
     public function passes($attribute, $value)
@@ -40,7 +41,7 @@ class ActiveUnit implements Rule
         }
 
         // إذا لم تكن الوحدة صالحة، نضبط رسالة الخطأ ونرجع false
-        if (!$unitQuery->exists()) {
+        if (! $unitQuery->exists()) {
             $this->errorMessage = 'The selected unit is not active or does not meet the required criteria.';
 
             return false;
@@ -52,7 +53,7 @@ class ActiveUnit implements Rule
             ->where('units.id', $value)
             ->where('users.agree_installment', 1);
 
-        if (!$userQuery->exists()) {
+        if (! $userQuery->exists()) {
             $this->errorMessage = 'The owner of this unit is not eligible for installment.';
 
             return false;

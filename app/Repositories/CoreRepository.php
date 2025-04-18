@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 class CoreRepository
 {
     protected $model;
+
     protected $disk;
 
     public function __construct(Model $model)
@@ -34,31 +35,31 @@ class CoreRepository
         $query = $this->model::query();
 
         // علاقات eager loading
-        if (!empty($with)) {
+        if (! empty($with)) {
             $query->with($with);
         }
 
         // الفلاتر العادية
-        if (!empty($filters)) {
+        if (! empty($filters)) {
             $query->where($filters);
         }
 
         // whereIn المتعددة
-        if (!empty($whereIn)) {
+        if (! empty($whereIn)) {
             foreach ($whereIn as $column => $values) {
-                if (!empty($values)) {
+                if (! empty($values)) {
                     $query->whereIn($column, $values);
                 }
             }
         }
 
         // علاقات بفلاتر مخصصة
-        if (!is_null($filtersRelation) && is_callable($filtersRelation)) {
+        if (! is_null($filtersRelation) && is_callable($filtersRelation)) {
             $filtersRelation($query);
         }
 
         // البحث
-        if (!empty($searchInfo['search'])) {
+        if (! empty($searchInfo['search'])) {
             $search = $searchInfo['search'];
             $searchOnColumns = $searchInfo['search_on_columns'] ?? [];
             $searchOnJsonColumns = $searchInfo['search_on_json_columns'] ?? [];
@@ -123,7 +124,7 @@ class CoreRepository
             return $record;
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Model: ' . get_class($this->model) . ' | Method: create | Error: ' . $e->getMessage() . ' | Line: ' . $e->getLine());
+            Log::error('Model: '.get_class($this->model).' | Method: create | Error: '.$e->getMessage().' | Line: '.$e->getLine());
 
             return null;
         }
@@ -140,7 +141,7 @@ class CoreRepository
             return $record;
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Model: ' . get_class($this->model) . ' | Method: update | Error: ' . $e->getMessage() . ' | Line: ' . $e->getLine());
+            Log::error('Model: '.get_class($this->model).' | Method: update | Error: '.$e->getMessage().' | Line: '.$e->getLine());
 
             return null;
         }
@@ -156,7 +157,7 @@ class CoreRepository
             return $record;
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Model: ' . get_class($this->model) . ' | Method: updateOrCreate | Error: ' . $e->getMessage() . ' | Line: ' . $e->getLine());
+            Log::error('Model: '.get_class($this->model).' | Method: updateOrCreate | Error: '.$e->getMessage().' | Line: '.$e->getLine());
 
             return null;
         }
@@ -169,14 +170,14 @@ class CoreRepository
             if ($model) {
                 $model->delete();
             } else {
-                Log::warning('Model not found for deletion with conditions: ' . json_encode($conditions));
+                Log::warning('Model not found for deletion with conditions: '.json_encode($conditions));
             }
         } catch (\Exception $e) {
             Log::error(
-                'Model: ' . get_class($this->model) .
-                ' | Method: delete | Error: ' . $e->getMessage() .
-                ' | Conditions: ' . json_encode($conditions) .
-                ' | Line: ' . $e->getLine()
+                'Model: '.get_class($this->model).
+                ' | Method: delete | Error: '.$e->getMessage().
+                ' | Conditions: '.json_encode($conditions).
+                ' | Line: '.$e->getLine()
             );
         }
     }

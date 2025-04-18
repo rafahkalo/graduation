@@ -10,13 +10,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feature extends Model
 {
-    use HasUuid, Translatable, Media;
+    use HasUuid, Media, Translatable;
 
     protected $fillable = [
         'name', 'translation', 'status', 'description', 'type', 'image',
     ];
+
     public static $translatable = ['name'];
+
     protected $appends = ['translated', 'image_path'];
+
     protected $hidden = ['translation', 'image'];
 
     protected static function boot()
@@ -31,6 +34,6 @@ class Feature extends Model
 
     public function getImagePathAttribute(): string
     {
-        return GlobalConst::SERVER_PATH . '/' . 'storage' . '/' . $this->image;
+        return GlobalConst::SERVER_PATH.'/'.'storage'.'/'.$this->image;
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class UserOwnsModel implements Rule
 {
     protected string $modelClass;
+
     protected string $userIdColumn;
 
     public function __construct(string $modelClass, string $userIdColumn = 'user_id')

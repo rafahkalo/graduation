@@ -11,9 +11,7 @@ class FileController extends Controller
 {
     use AuthorizesRequests;
 
-    public function __construct(private FileService $fileService)
-    {
-    }
+    public function __construct(private FileService $fileService) {}
 
     public function preview(string $fileId): StreamedResponse
     {

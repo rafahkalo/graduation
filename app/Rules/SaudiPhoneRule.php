@@ -10,8 +10,7 @@ class SaudiPhoneRule implements Rule
      * تحقق من صحة الرقم السعودي.
      *
      * @param  string  $attribute
-     * @param  mixed   $value
-     * @return bool
+     * @param  mixed  $value
      */
     public function passes($attribute, $value): bool
     {
@@ -24,8 +23,6 @@ class SaudiPhoneRule implements Rule
 
     /**
      * رسالة الخطأ التي ستُعرض إذا لم يتحقق الشرط.
-     *
-     * @return string
      */
     public function message(): string
     {
@@ -34,9 +31,6 @@ class SaudiPhoneRule implements Rule
 
     /**
      * تنسيق الرقم السعودي ليصبح بصيغة دولية.
-     *
-     * @param  string  $phone
-     * @return string|null
      */
     public static function formatSaudiPhone(string $phone): ?string
     {
@@ -50,7 +44,7 @@ class SaudiPhoneRule implements Rule
 
         // إذا كان الرقم يبدأ بـ 5، أضف 966
         if (str_starts_with($phone, '5')) {
-            $phone = '966' . $phone;
+            $phone = '966'.$phone;
         }
 
         // تحقق من صحة الرقم

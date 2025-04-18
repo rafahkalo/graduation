@@ -9,9 +9,7 @@ use Illuminate\Http\JsonResponse;
 
 class PropertyController extends BaseController
 {
-    public function __construct(private PropertyService $propertyService)
-    {
-    }
+    public function __construct(private PropertyService $propertyService) {}
 
     public function store(PropertyRequest $request): JsonResponse
     {

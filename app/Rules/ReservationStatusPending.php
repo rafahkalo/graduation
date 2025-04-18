@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ReservationStatusPending implements Rule
 {
     protected $reservationId;
+
     protected $errorMessage; // تخزين رسالة الخطأ
 
     public function __construct($reservationId)
@@ -24,7 +25,7 @@ class ReservationStatusPending implements Rule
             ->first(['status', 'created_at']);
 
         // التحقق من وجود الحجز
-        if (!$reservation) {
+        if (! $reservation) {
             $this->errorMessage = 'The reservation does not exist.';
 
             return false;

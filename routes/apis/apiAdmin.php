@@ -26,6 +26,6 @@ Route::middleware(['auth:api_admin', 'localization'])->group(function () {
     Route::get('files/{fileId}/preview', [FileController::class, 'preview']);
     Route::get('/files/{fileId}/download', [FileController::class, 'download']);
 
-    //PropertyPublishRequest Routes
+    // PropertyPublishRequest Routes
     Route::resource('property-approval-requests', PropertyPublishRequestController::class)->only(['index', 'update', 'show']);
 });

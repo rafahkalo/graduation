@@ -9,7 +9,7 @@ class AuthRequest extends BaseRequest
     public function rules()
     {
         return [
-            'phone' => ['required', new SaudiPhoneRule()],
+            'phone' => ['required', new SaudiPhoneRule],
             'user_type' => 'required|in:business,tenant',
         ];
     }
