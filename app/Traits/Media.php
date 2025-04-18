@@ -30,8 +30,12 @@ trait Media
         return $storedPaths;
     }
 
-    public function deleteImage($filename): bool
+    public function deleteImage($filename = null): bool
     {
+        if (!$filename) {
+            return false;
+        }
+
         return Storage::disk(GlobalConst::DISK_IMAGE)->delete($filename);
     }
 }
