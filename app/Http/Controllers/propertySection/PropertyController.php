@@ -11,6 +11,15 @@ class PropertyController extends BaseController
 {
     public function __construct(private PropertyService $propertyService) {}
 
+    public function index()
+    {
+        $result = $this->propertyService->index(request()->per_page ?? 8, array_filter(request()->only([
+
+        ])));
+
+        return $this->apiResponse(data: $result);
+
+    }
     public function store(PropertyRequest $request): JsonResponse
     {
         $data = $request->validated();

@@ -19,12 +19,12 @@ class PropertyService
         private LocationRepo $locationRepo,
         private UnitService $unitService,
         private UnitFeaturesRepo $unitFeaturesRepo,
-        /*
-        private UnitServiceRepo $unitServiceRepo,
-
-        private MainItemRepo $mainItemRepo
-       */
     ) {}
+
+    public function index(int $per_page, array $filters)
+    {
+        return $this->propertyRepo->index($per_page, $filters);
+    }
 
     public function store(array $data): ?array
     {

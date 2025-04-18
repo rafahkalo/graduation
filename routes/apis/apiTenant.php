@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\CountryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['localization']], function () {
