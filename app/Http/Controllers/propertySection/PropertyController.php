@@ -13,7 +13,7 @@ class PropertyController extends BaseController
     {
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         $result = $this->propertyService->index(request()->per_page ?? 8);
 

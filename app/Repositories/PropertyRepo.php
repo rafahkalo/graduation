@@ -40,7 +40,7 @@ class PropertyRepo extends CoreRepository
                 AllowedFilter::custom('location_range', new LocationRangeFilter()),
             ])
             ->allowedSorts(['created_at'])
-            ->allowedIncludes('units.images', 'units.features', 'location', 'user:id,first_name,last_name,company_name,about');
+            ->allowedIncludes('units.images', 'units.features', 'location', 'user');
 
         if (Auth::guard('api')->check()) {
             $query->where('user_id', Auth::id());

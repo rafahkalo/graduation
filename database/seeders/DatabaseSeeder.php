@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             DirectionsSeeder::class,
             CountrySeeder::class,
+            CategorySeeder::class,
+            PropertySeeder::class,
         ]);
     }
 }
