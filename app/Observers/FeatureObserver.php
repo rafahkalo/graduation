@@ -19,5 +19,7 @@ class FeatureObserver
         TranslateModelJob::dispatch($feature, $columns);
     }
 
-    public function deleted(Feature $allFeature): void {}
+    public function deleted(Feature $allFeature): void
+    {
+    }
 }

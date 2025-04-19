@@ -34,18 +34,18 @@ class TranslateModelJob implements ShouldQueue
     {
         Log::info('Languages to translate:', $this->languages);
 
-        if (! $this->model) {
+        if (!$this->model) {
             Log::error('Model is not provided.');
 
             return;
         }
 
         $this->fields = array_filter($this->fields, function ($field) {
-            return isset($this->model->{$field}) && ! empty($this->model->{$field});
+            return isset($this->model->{$field}) && !empty($this->model->{$field});
         });
 
         if (empty($this->fields)) {
-            Log::info('No fields to translate for model ID: '.$this->model->id);
+            Log::info('No fields to translate for model ID: ' . $this->model->id);
 
             return;
         }

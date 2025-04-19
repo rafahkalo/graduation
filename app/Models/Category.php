@@ -38,6 +38,6 @@ class Category extends Model
 
     public function getImagePathAttribute(): string
     {
-        return GlobalConst::SERVER_PATH.'/'.'storage'.'/'.$this->image;
+        return GlobalConst::SERVER_PATH . '/' . 'storage' . '/' . $this->image;
     }
 }

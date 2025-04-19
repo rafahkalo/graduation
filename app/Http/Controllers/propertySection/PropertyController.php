@@ -9,7 +9,9 @@ use Illuminate\Http\JsonResponse;
 
 class PropertyController extends BaseController
 {
-    public function __construct(private PropertyService $propertyService) {}
+    public function __construct(private PropertyService $propertyService)
+    {
+    }
 
     public function index()
     {
@@ -18,6 +20,7 @@ class PropertyController extends BaseController
         return $this->apiResponse(data: $result);
 
     }
+
     public function store(PropertyRequest $request): JsonResponse
     {
         $data = $request->validated();

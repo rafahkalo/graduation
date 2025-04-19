@@ -25,7 +25,7 @@ class ReservationStatusPending implements Rule
             ->first(['status', 'created_at']);
 
         // التحقق من وجود الحجز
-        if (! $reservation) {
+        if (!$reservation) {
             $this->errorMessage = 'The reservation does not exist.';
 
             return false;

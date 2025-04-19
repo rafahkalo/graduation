@@ -12,7 +12,7 @@ class EnsureUserIsVerified
     {
         $user = $request->user();
 
-        if (! $user || $user->is_verified != 1) {
+        if (!$user || $user->is_verified != 1) {
             return response()->json([
                 'message' => __('message.account_not_verified'),
             ], 403);

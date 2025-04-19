@@ -9,7 +9,9 @@ use Illuminate\Http\JsonResponse;
 
 class FeatureController extends BaseController
 {
-    public function __construct(private FeatureService $featureService) {}
+    public function __construct(private FeatureService $featureService)
+    {
+    }
 
     public function index()
     {

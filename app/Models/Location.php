@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Location extends Model
 {
-    use HasUuids, SoftDeletes;
-
+    use HasUuids, SoftDeletes, Translatable;
     protected $fillable = [
         'lng',
         'lat',
@@ -20,4 +20,7 @@ class Location extends Model
         'direction_id',
         'translation',
     ];
+    public static $translatable = ['street', 'city'];
+    protected $hidden = ['translation', 'created_at', 'updated_at', 'deleted_at', 'model_type', 'model_id'];
+    protected $appends = ['translated'];
 }

@@ -70,7 +70,7 @@ class AuthRepo
         $count = VerificationCode::where('phone', $phone)
             ->whereDate('created_at', $today)
             ->count();
-        Log::info("Count for {$phone} today: ".$count);
+        Log::info("Count for {$phone} today: " . $count);
 
         return $count < $maxPerDay;
     }

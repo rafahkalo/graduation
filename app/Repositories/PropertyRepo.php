@@ -2,12 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Filters\LocationRangeFilter;
 use App\Filters\MultiColumnSearchFilter;
-use App\Models\Country;
 use App\Models\Property;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+
 class PropertyRepo extends CoreRepository
 {
     public function __construct(
@@ -18,22 +20,48 @@ class PropertyRepo extends CoreRepository
 
     public function storeProperty(array $data)
     {
-        if (! isset($data['property_id'])) {
+        if (!isset($data['property_id'])) {
             return $this->create($data);
         } else {
             return $this->update($data, $data['property_id']);
         }
     }
 
-        public function filterCountries(int $per_page): LengthAwarePaginator
+    public function filterProperties(int $per_page): LengthAwarePaginator
     {
-        return QueryBuilder::for(Property::class)
+        $featureId = request('featureId') ?? null;
+        $categoryId = request('categoryId') ?? null;
+        $query = QueryBuilder::for(Property::class)
             ->allowedFilters([
                 AllowedFilter::custom('search', new MultiColumnSearchFilter([
-                    'translation'
+                    'translation',
                 ])),
+
+                AllowedFilter::custom('location_range', new LocationRangeFilter()),
             ])
             ->allowedSorts(['created_at'])
-            ->paginate($per_page);
+            ->allowedIncludes('units.images', 'units.features', 'location', 'user:id,first_name,last_name,company_name,about');
+
+        if (Auth::guard('api')->check()) {
+            $query->where('user_id', Auth::id());
+        } elseif (Auth::guard('api_tenant')->check()) {
+            $query->whereHas('units', function ($q) {
+                $q->where('status', 'active');
+            });
+        } else {
+            $query->whereHas('units', function ($q) {
+                $q->where('status', 'active');
+            });
+        }
+
+        if ($featureId) {
+            $query->hasFeatureInUnit($featureId);
+        }
+
+        if ($categoryId) {
+            $query->hasCategoryInUnit($categoryId);
+        }
+
+        return $query->paginate($per_page);
     }
 }

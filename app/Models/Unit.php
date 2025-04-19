@@ -46,6 +46,28 @@ class Unit extends Model
         'guard_phone',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($unit) {
+            $unit->rating_details = [
+                'cleanliness' => 0,
+                'accuracy' => 0,
+                'check_in' => 0,
+                'communication' => 0,
+                'value' => 0,
+                'overall_rating_1' => 0,
+                'overall_rating_2' => 0,
+                'overall_rating_3' => 0,
+                'overall_rating_4' => 0,
+                'overall_rating_5' => 0,
+                'total_reviewers' => 0,
+                'current_overall_rating' => 0,
+                'current_badge_code' => 0,
+            ];
+        });
+    }
     public function features(): BelongsToMany
     {
         return $this->belongsToMany(Feature::class, 'unit_features');

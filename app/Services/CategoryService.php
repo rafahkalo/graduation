@@ -11,7 +11,9 @@ class CategoryService
 {
     use Media;
 
-    public function __construct(private CategoryRepo $categoryRepo) {}
+    public function __construct(private CategoryRepo $categoryRepo)
+    {
+    }
 
     public function index(int $per_page, ?string $status = null): Collection|LengthAwarePaginator
     {

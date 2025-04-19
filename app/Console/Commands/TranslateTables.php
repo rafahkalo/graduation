@@ -3,8 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\TranslateModelJob;
-use App\Models\Direction;
-use App\Models\Property;
+use App\Models\Location;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +15,7 @@ class TranslateTables extends Command
 
     public function handle()
     {
-        $this->dispatchTranslation(Property::class);
+        $this->dispatchTranslation(Location::class);
         $this->info('All untranslated records have been dispatched for translation.');
 
         return Command::SUCCESS;
@@ -27,18 +26,18 @@ class TranslateTables extends Command
         $modelName = class_basename($modelClass);
 
         //$modelClass::where('translation', 'LIKE', '[]')
-         $modelClass::where('translation', '=', null)
-            ->chunk(100, function ($records) use ($modelName) {
-                foreach ($records as $record) {
-                    if (! isset($record::$translatable)) {
-                        Log::warning("Skipping {$modelName} ID {$record->id} - no translatable fields defined.");
+        $modelClass::where('translation', '=', null)
+           ->chunk(100, function ($records) use ($modelName) {
+               foreach ($records as $record) {
+                   if (!isset($record::$translatable)) {
+                       Log::warning("Skipping {$modelName} ID {$record->id} - no translatable fields defined.");
 
-                        continue;
-                    }
+                       continue;
+                   }
 
-                    Log::info("Dispatching TranslateModelJob for {$modelName} ID: {$record->id}");
-                    TranslateModelJob::dispatch($record, $record::$translatable);
-                }
-            });
+                   Log::info("Dispatching TranslateModelJob for {$modelName} ID: {$record->id}");
+                   TranslateModelJob::dispatch($record, $record::$translatable);
+               }
+           });
     }
 }

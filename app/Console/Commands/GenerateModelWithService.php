@@ -26,12 +26,12 @@ class GenerateModelWithService extends Command
         $this->info("Model and migration created: {$modelPath}");
 
         // إنشاء فولدر Services إذا لم يكن موجودًا
-        if (! File::exists(app_path('Services'))) {
+        if (!File::exists(app_path('Services'))) {
             File::makeDirectory(app_path('Services'));
         }
 
         // إنشاء كلاس السيرفيس
-        if (! File::exists($servicePath)) {
+        if (!File::exists($servicePath)) {
             File::put($servicePath, $this->getServiceTemplate($name));
             $this->info("Service class created at: {$servicePath}");
         } else {
@@ -39,7 +39,7 @@ class GenerateModelWithService extends Command
         }
 
         // إنشاء كلاس الريبو
-        if (! File::exists($repositoryPath)) {
+        if (!File::exists($repositoryPath)) {
             File::put($repositoryPath, $this->getRepositoryTemplate($name));
             $this->info("Repository class created at: {$repositoryPath}");
         } else {
@@ -47,7 +47,7 @@ class GenerateModelWithService extends Command
         }
 
         // إنشاء كلاس الكونترولر
-        if (! File::exists($controllerPath)) {
+        if (!File::exists($controllerPath)) {
             File::put($controllerPath, $this->getControllerTemplate($name));
             $this->info("Controller class created at: {$controllerPath}");
         } else {
@@ -55,12 +55,12 @@ class GenerateModelWithService extends Command
         }
 
         // إنشاء فولدر Requests إذا لم يكن موجودًا
-        if (! File::exists(app_path('Http/Requests'))) {
+        if (!File::exists(app_path('Http/Requests'))) {
             File::makeDirectory(app_path('Http/Requests'));
         }
 
         // إنشاء كلاس الريكوست
-        if (! File::exists($requestPath)) {
+        if (!File::exists($requestPath)) {
             File::put($requestPath, $this->getRequestTemplate($name));
             $this->info("Request class created at: {$requestPath}");
         } else {

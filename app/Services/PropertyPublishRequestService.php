@@ -17,7 +17,8 @@ class PropertyPublishRequestService
         private PropertyPublishRequestRepo $publishRequestRepo,
         private FileService $fileService,
         private AuthService $authService,
-    ) {}
+    ) {
+    }
 
     public function index(int $per_page, ?string $status = null): Collection|LengthAwarePaginator
     {
@@ -51,7 +52,7 @@ class PropertyPublishRequestService
             ]
         );
 
-        if (! empty($data['files'])) {
+        if (!empty($data['files'])) {
             $this->fileService->store($data, $publishRequest->id);
         }
 

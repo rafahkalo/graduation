@@ -44,7 +44,7 @@ class SaudiPhoneRule implements Rule
 
         // إذا كان الرقم يبدأ بـ 5، أضف 966
         if (str_starts_with($phone, '5')) {
-            $phone = '966'.$phone;
+            $phone = '966' . $phone;
         }
 
         // تحقق من صحة الرقم

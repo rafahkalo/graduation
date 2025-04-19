@@ -15,7 +15,9 @@ use Illuminate\Http\Request;
 
 class AuthController extends BaseController
 {
-    public function __construct(private AuthService $authService) {}
+    public function __construct(private AuthService $authService)
+    {
+    }
 
     public function login(AuthRequest $request): JsonResponse
     {
@@ -29,7 +31,7 @@ class AuthController extends BaseController
 
         $result = $this->authService->login($data, $userClass);
 
-        if (is_array($result) && isset($result['success']) && ! $result['success']) {
+        if (is_array($result) && isset($result['success']) && !$result['success']) {
             return $this->apiResponse(message: $result['message'], statusCode: JsonResponse::HTTP_TOO_MANY_REQUESTS, file: 'auth');
         }
 
@@ -49,7 +51,7 @@ class AuthController extends BaseController
         $data['user_type'] = $request->user_type;
         $result = $this->authService->checkCode($data);
 
-        if (! $result['status']) {
+        if (!$result['status']) {
             return $this->apiResponse(message: $result['message'], statusCode: JsonResponse::HTTP_UNAUTHORIZED, file: 'auth');
         }
 

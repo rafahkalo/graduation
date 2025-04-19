@@ -33,7 +33,7 @@ class UnitObserver
     public function updating(Unit $unit)
     {
         // هل الصور الجديدة مرفقة مع الموديل؟
-        if (! empty($unit->images)) {
+        if (!empty($unit->images)) {
             // حذف الصور القديمة المرتبطة بالوحدة
             $oldImages = $unit->images;
 

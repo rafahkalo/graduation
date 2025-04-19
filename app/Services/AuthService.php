@@ -14,7 +14,9 @@ class AuthService
 {
     use AuthTrait, Media;
 
-    public function __construct(private AuthRepo $authRepository) {}
+    public function __construct(private AuthRepo $authRepository)
+    {
+    }
 
     /**
      * @throws RandomException
@@ -22,7 +24,7 @@ class AuthService
     public function login(array $data, string $model)
     {
         // التحقق أولًا: هل يمكن إرسال كود تحقق لهذا الرقم اليوم؟
-        if (! $this->authRepository->canSendVerificationCode($data['phone'])) {
+        if (!$this->authRepository->canSendVerificationCode($data['phone'])) {
             return [
                 'success' => false,
                 'message' => __('verification_code_limit_exceeded', [], app()->getLocale()),
@@ -60,7 +62,7 @@ class AuthService
         $user = null;
         $verificationCode = $this->authRepository->getVerificationCode($data['phone']);
 
-        if (! $this->authRepository->isCodeValid($verificationCode, $data['code'])) {
+        if (!$this->authRepository->isCodeValid($verificationCode, $data['code'])) {
             return [
                 'status' => false,
                 'message' => __('please_request_the_code_again', [], app()->getLocale()),
@@ -75,7 +77,7 @@ class AuthService
         }
 
         $token = $this->createTokenForUser($user);
-        if (! $token) {
+        if (!$token) {
             return [
                 'status' => false,
                 'message' => __('unauthorized', [], app()->getLocale()),

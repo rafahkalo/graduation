@@ -9,7 +9,9 @@ use Illuminate\Http\JsonResponse;
 
 class CategoryController extends BaseController
 {
-    public function __construct(private CategoryService $categoryService) {}
+    public function __construct(private CategoryService $categoryService)
+    {
+    }
 
     public function index()
     {

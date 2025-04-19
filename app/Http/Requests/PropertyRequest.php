@@ -70,7 +70,7 @@ class PropertyRequest extends BaseRequest
             'location' => 'sometimes|array',
         ];
 
-        if (! $this->isAdminRequest()) {
+        if (!$this->isAdminRequest()) {
             $rules['property'][] = new UserOwnsModel(Property::class);
         }
 
@@ -99,7 +99,7 @@ class PropertyRequest extends BaseRequest
             $price = $this->input('price');
             $deposit = $this->input('deposit');
 
-            if (! is_null($price) && ! is_null($deposit) && $deposit >= $price) {
+            if (!is_null($price) && !is_null($deposit) && $deposit >= $price) {
                 $validator->errors()->add('deposit', 'The deposit must be less than the price.');
             }
         });

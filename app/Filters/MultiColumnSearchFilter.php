@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -15,11 +16,18 @@ class MultiColumnSearchFilter implements Filter
 
     public function __invoke(Builder $query, $value, string $property): Builder
     {
-        return $query->where(function ($query) use ($value, $property) {
+        $locale = request()->header('lang', app()->getLocale());
+
+        return $query->where(function ($query) use ($value, $locale) {
             foreach ($this->columns as $column) {
-                if ($column === 'translation') {
-                    $query->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT({$column}, '$.ar')) LIKE ?", ['%' . $value . '%'])
-                        ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT({$column}, '$.en')) LIKE ?", ['%' . $value . '%']);
+                if (in_array($column, ['name'])) {
+                    $jsonPath = "$.{$locale}.{$column}";
+                    $query->orWhereRaw('JSON_UNQUOTE(JSON_EXTRACT(translation, ?)) LIKE ?', [$jsonPath, "%{$value}%"]);
+                }
+                // إذا كان عمود نص ترجمة مباشر
+                elseif ($column === 'translation') {
+                    $jsonPath = "$.{$locale}";
+                    $query->orWhereRaw('JSON_UNQUOTE(JSON_EXTRACT(translation, ?)) LIKE ?', [$jsonPath, "%{$value}%"]);
                 } else {
                     $query->orWhere($column, 'LIKE', "%{$value}%");
                 }

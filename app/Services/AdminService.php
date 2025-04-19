@@ -9,13 +9,15 @@ class AdminService
 {
     use AuthTrait;
 
-    public function __construct(private AdminRepo $adminRepo) {}
+    public function __construct(private AdminRepo $adminRepo)
+    {
+    }
 
     public function loginAsAdmin(array $data): array
     {
         $admin = $this->adminRepo->getAdminByEmail($data['email']);
 
-        if (! $this->adminRepo->isValidAdmin($admin, $data['password'])) {
+        if (!$this->adminRepo->isValidAdmin($admin, $data['password'])) {
             return $this->generateResponse(false, 'unauthorized');
         }
 

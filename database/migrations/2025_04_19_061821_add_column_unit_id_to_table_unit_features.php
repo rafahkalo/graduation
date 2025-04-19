@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\User;
+use App\Models\Feature;
+use App\Models\Unit;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,19 +12,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('properties', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->text('name')->nullable();
-            $table->text('description1')->nullable();
-
-            $table->foreignIdFor(User::class)
+        Schema::table('unit_features', function (Blueprint $table) {
+            $table->foreignIdFor(Feature::class)
                 ->nullable()
                 ->constrained()
                 ->restrictOnDelete();
 
-            $table->json('translation')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
+            $table->foreignIdFor(Unit::class)
+                ->nullable()
+                ->constrained()
+                ->restrictOnDelete();
         });
     }
 
@@ -32,6 +30,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('properties');
+        Schema::table('unit_features', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -15,19 +15,19 @@ class LanguageSpecificString implements Rule
 
     public function passes($attribute, $value)
     {
-        if (! is_string($value)) {
+        if (!is_string($value)) {
             return false;
         }
 
         if ($this->locale === 'ar') {
-            return preg_match('/^[\p{Arabic}\s\S]*$/u', $value) && ! preg_match('/[A-Za-z]/', $value);
+            return preg_match('/^[\p{Arabic}\s\S]*$/u', $value) && !preg_match('/[A-Za-z]/', $value);
         } else {
-            return preg_match('/^[A-Za-z\s\S]*$/', $value) && ! preg_match('/[\p{Arabic}]/u', $value);
+            return preg_match('/^[A-Za-z\s\S]*$/', $value) && !preg_match('/[\p{Arabic}]/u', $value);
         }
     }
 
     public function message()
     {
-        return 'The :attribute must contain only letters '.($this->locale === 'ar' ? 'in Arabic' : 'in English').', along with allowed symbols.';
+        return 'The :attribute must contain only letters ' . ($this->locale === 'ar' ? 'in Arabic' : 'in English') . ', along with allowed symbols.';
     }
 }

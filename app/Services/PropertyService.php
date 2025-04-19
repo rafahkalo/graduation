@@ -19,11 +19,12 @@ class PropertyService
         private LocationRepo $locationRepo,
         private UnitService $unitService,
         private UnitFeaturesRepo $unitFeaturesRepo,
-    ) {}
+    ) {
+    }
 
     public function index(int $per_page)
     {
-        return $this->propertyRepo->filterCountries($per_page);
+        return $this->propertyRepo->filterProperties($per_page);
     }
 
     public function store(array $data): ?array
@@ -31,7 +32,7 @@ class PropertyService
         $response = [];
         $requiredKeys = ['description1', 'name', 'location', 'property_id'];
 
-        if (! empty(array_intersect_key(array_flip($requiredKeys), $data))) {
+        if (!empty(array_intersect_key(array_flip($requiredKeys), $data))) {
             $property = $this->propertyRepo->storeProperty($data);
             $data['property_id'] = $property->id ?? $data['property_id'];
 

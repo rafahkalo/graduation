@@ -52,7 +52,7 @@ trait FileTrait
      */
     protected function generateUniqueFileName(UploadedFile $file): string
     {
-        return Str::random(40).'.'.$file->getClientOriginalExtension();
+        return Str::random(40) . '.' . $file->getClientOriginalExtension();
     }
 
     /**
@@ -70,7 +70,7 @@ trait FileTrait
      */
     protected function generateStoragePath(string $directory, string $fileName): string
     {
-        return trim($directory, '/').'/'.$fileName;
+        return trim($directory, '/') . '/' . $fileName;
     }
 
     /**
@@ -88,7 +88,7 @@ trait FileTrait
 
         $maxSize = config('file.max_size', 10240); // 10MB
 
-        if (! in_array($file->getMimeType(), $allowedMimeTypes)) {
+        if (!in_array($file->getMimeType(), $allowedMimeTypes)) {
             throw new \Exception('نوع الملف غير مسموح به');
         }
 
@@ -118,7 +118,7 @@ trait FileTrait
         string $disk = 'private',
         array $headers = []
     ) {
-        if (! Storage::disk($disk)->exists($path)) {
+        if (!Storage::disk($disk)->exists($path)) {
             abort(404, 'الملف غير موجود');
         }
 
@@ -133,7 +133,7 @@ trait FileTrait
         string $disk = 'private',
         int $expiration = 30
     ): ?string {
-        if (! Storage::disk($disk)->exists($path)) {
+        if (!Storage::disk($disk)->exists($path)) {
             return null;
         }
 

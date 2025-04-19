@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Translatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Property extends Model
 {
     use HasUuids, SoftDeletes, Translatable;
@@ -19,8 +21,15 @@ class Property extends Model
         'user_id',
         'translation',
     ];
+    protected $hidden = ['translation'];
     public static $translatable = ['name', 'description1'];
     protected $appends = ['translated'];
+
+    public function location()
+    {
+        return $this->morphOne(Location::class, 'model');
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -29,5 +38,19 @@ class Property extends Model
     public function units(): HasMany
     {
         return $this->hasMany(Unit::class);
+    }
+
+    public function scopeHasFeatureInUnit(Builder $query, $featureId): Builder
+    {
+        return $query->whereHas('units.features', function ($q) use ($featureId) {
+            $q->where('feature_id', $featureId);
+        });
+    }
+
+    public function scopeHasCategoryInUnit(Builder $query, $categoryId)
+    {
+        return $query->whereHas('units', function ($q) use ($categoryId) {
+            $q->where('category_id', $categoryId);
+        });
     }
 }

@@ -17,7 +17,7 @@ class UnitService extends CoreRepository
     {
         Log::info(print_r($data, true));
 
-        if (! isset($data['unit_id'])) {
+        if (!isset($data['unit_id'])) {
             return $this->create($data);
         } else {
             return $this->update($data, $data['unit_id']);

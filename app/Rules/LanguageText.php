@@ -15,7 +15,7 @@ class LanguageText implements Rule
 
     public function passes($attribute, $value)
     {
-        if (! is_string($value)) {
+        if (!is_string($value)) {
             return false;
         }
 
@@ -33,7 +33,7 @@ class LanguageText implements Rule
 
     public function message()
     {
-        return 'The :attribute field must contain only '.
-            ($this->language === 'ar' ? 'Arabic' : 'English').' characters.';
+        return 'The :attribute field must contain only ' .
+            ($this->language === 'ar' ? 'Arabic' : 'English') . ' characters.';
     }
 }

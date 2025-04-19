@@ -9,7 +9,9 @@ use Illuminate\Http\JsonResponse;
 
 class DirectionController extends BaseController
 {
-    public function __construct(private DirectionService $directionService) {}
+    public function __construct(private DirectionService $directionService)
+    {
+    }
 
     public function index(): JsonResponse
     {
