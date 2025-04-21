@@ -11,4 +11,6 @@ Route::group(['middleware' => ['localization']], function () {
 
 Route::middleware(['auth:api_tenant', 'localization'])->group(function () {
     Route::post('updateProfile', [AuthController::class, 'updateProfileAsTenant']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::get('profile', [AuthController::class, 'profile']);
 });
