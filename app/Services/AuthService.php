@@ -9,6 +9,7 @@ use App\Traits\AuthTrait;
 use App\Traits\Media;
 use Illuminate\Support\Facades\Auth;
 use Random\RandomException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthService
 {
@@ -91,5 +92,15 @@ class AuthService
             'message' => __('logged_in_successfully', [], app()->getLocale()),
             'data' => $this->userWithToken($user, $token),
         ];
+    }
+
+    public function logout(): void
+    {
+        JWTAuth::invalidate(JWTAuth::getToken());
+
+    }
+        public function profile()
+    {
+        return JWTAuth::parseToken()->authenticate();
     }
 }

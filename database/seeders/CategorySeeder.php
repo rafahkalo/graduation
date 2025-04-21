@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -18,9 +19,9 @@ class CategorySeeder extends Seeder
                 'translation' => json_encode([
                     'en' => [
                         'name' => 'Apartments',
-                        'description' => 'Category for apartments'
-                    ]
-                ])
+                        'description' => 'Category for apartments',
+                    ],
+                ]),
             ],
             [
                 'name' => 'فلل',
@@ -30,9 +31,9 @@ class CategorySeeder extends Seeder
                 'translation' => json_encode([
                     'en' => [
                         'name' => 'Villas',
-                        'description' => 'Category for villas'
-                    ]
-                ])
+                        'description' => 'Category for villas',
+                    ],
+                ]),
             ],
             [
                 'name' => 'محلات تجارية',
@@ -42,9 +43,9 @@ class CategorySeeder extends Seeder
                 'translation' => json_encode([
                     'en' => [
                         'name' => 'Shops',
-                        'description' => 'Shops in commercial areas'
-                    ]
-                ])
+                        'description' => 'Shops in commercial areas',
+                    ],
+                ]),
             ],
         ];
 

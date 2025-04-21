@@ -68,6 +68,7 @@ class Unit extends Model
             ];
         });
     }
+
     public function features(): BelongsToMany
     {
         return $this->belongsToMany(Feature::class, 'unit_features');

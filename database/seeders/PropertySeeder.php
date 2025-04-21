@@ -52,42 +52,42 @@ class PropertySeeder extends Seeder
             'direction_id' => $direction->id,
         ]);
 
-       $unit = Unit::create([
-            'id' => Str::uuid(),
-            'title' => 'شقة رائعة',
-            'description2' => 'وصف الشقة بالتفصيل',
-            'main_image' => 'unit1.jpg',
-            'street_width' => 12,
-            'space' => 150,
-            'equipment' => 'furnished',
-            'property_type' => 'residential',
-            'floor' => 2,
-            'property_age' => 5,
-            'status' => 'active',
-            'reservation_type' => 'monthly',
-            'deposit' => 1000,
-            'reservation_status' => 'available',
-            'accept_by_admin' => 'accepted',
-            'message_of_admin' => 'مقبول',
-            'house_rules' => 'ممنوع التدخين',
-            'views' => 150,
-            'price' => 5000.00,
-            'property_id' => $property?->id,
-            'user_id' => $user?->id,
-            'category_id' => $category?->id,
-            'translation' => json_encode([
-                'en' => [
-                    'title' => 'Great Apartment',
-                    'description2' => 'Detailed description of the apartment',
-                ],
-                'ar' => [
-                    'title' => 'شقة رائعة',
-                    'description2' => 'وصف الشقة بالتفصيل',
-                    ],
-            ]),
-            'guard_name' => 'أبو أحمد',
-            'guard_phone' => '0555555555',
-        ]);
+        $unit = Unit::create([
+             'id' => Str::uuid(),
+             'title' => 'شقة رائعة',
+             'description2' => 'وصف الشقة بالتفصيل',
+             'main_image' => 'unit1.jpg',
+             'street_width' => 12,
+             'space' => 150,
+             'equipment' => 'furnished',
+             'property_type' => 'residential',
+             'floor' => 2,
+             'property_age' => 5,
+             'status' => 'active',
+             'reservation_type' => 'monthly',
+             'deposit' => 1000,
+             'reservation_status' => 'available',
+             'accept_by_admin' => 'accepted',
+             'message_of_admin' => 'مقبول',
+             'house_rules' => 'ممنوع التدخين',
+             'views' => 150,
+             'price' => 5000.00,
+             'property_id' => $property?->id,
+             'user_id' => $user?->id,
+             'category_id' => $category?->id,
+             'translation' => json_encode([
+                 'en' => [
+                     'title' => 'Great Apartment',
+                     'description2' => 'Detailed description of the apartment',
+                 ],
+                 'ar' => [
+                     'title' => 'شقة رائعة',
+                     'description2' => 'وصف الشقة بالتفصيل',
+                     ],
+             ]),
+             'guard_name' => 'أبو أحمد',
+             'guard_phone' => '0555555555',
+         ]);
 
         UnitFeatures::create(['unit_id' => $unit->id, 'feature_id' => $feature->id]);
     }

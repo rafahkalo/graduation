@@ -73,4 +73,18 @@ class AuthController extends BaseController
 
         return $this->apiResponse(data: $result);
     }
+
+    public function logout(): JsonResponse
+    {
+         $this->authService->logout();
+
+        return $this->apiResponse();
+    }
+
+    public function profile(): JsonResponse
+    {
+        $result = $this->authService->profile();
+
+        return $this->apiResponse(data: $result);
+    }
 }
