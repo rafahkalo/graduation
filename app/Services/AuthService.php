@@ -101,6 +101,12 @@ class AuthService
     }
         public function profile()
     {
-        return JWTAuth::parseToken()->authenticate();
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if (Auth::guard('api_tenant')->check()) {
+            $user->load('national');
+        }
+
+        return $user;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class File extends Model
 {
@@ -22,27 +23,14 @@ class File extends Model
         'extension',
         'hash',
     ];
+    protected $appends = ['download_url'];
 
-    public function scopePreviewable($query)
+    public function getDownloadUrlAttribute()
     {
-        return $query->whereIn('mime_type', [
-            'image/jpeg',
-            'image/png',
-            'image/gif',
-            'application/pdf',
-            'text/plain',
-        ]);
+        return route('files.download', $this->id);
     }
-
-    // صلاحيات الوصول
-    public function canBeAccessedBy(User $user): bool
+    public function model(): MorphTo
     {
-        return $this->user_id === $user->id;
-    }
-
-    // مسار الملف المحمي
-    public function getStoragePath(): string
-    {
-        return "property_files/{$this->property_id}/{$this->filename}";
+        return $this->morphTo();
     }
 }

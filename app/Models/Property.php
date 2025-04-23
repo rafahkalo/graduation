@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 class Property extends Model
 {
     use HasUuids, SoftDeletes, Translatable;
@@ -25,7 +25,7 @@ class Property extends Model
     public static $translatable = ['name', 'description1'];
     protected $appends = ['translated'];
 
-    public function location()
+    public function location(): MorphOne
     {
         return $this->morphOne(Location::class, 'model');
     }
@@ -47,7 +47,7 @@ class Property extends Model
         });
     }
 
-    public function scopeHasCategoryInUnit(Builder $query, $categoryId)
+    public function scopeHasCategoryInUnit(Builder $query, $categoryId): Builder
     {
         return $query->whereHas('units', function ($q) use ($categoryId) {
             $q->where('category_id', $categoryId);

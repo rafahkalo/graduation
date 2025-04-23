@@ -83,9 +83,9 @@ class FileService
             : 'attachment; filename="' . $file->original_name . '"';
     }
 
-    public function downloadFile(string $fileId): StreamedResponse
+    public function downloadFile(string $path): StreamedResponse
     {
-        $file = File::findOrFail($fileId);
+        $file = File::findOrFail($path);
 
         $path = $file->storage_path;
 

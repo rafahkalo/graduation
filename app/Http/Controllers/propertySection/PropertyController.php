@@ -18,7 +18,6 @@ class PropertyController extends BaseController
         $result = $this->propertyService->index(request()->per_page ?? 8);
 
         return $this->apiResponse(data: $result);
-
     }
 
     public function store(PropertyRequest $request): JsonResponse

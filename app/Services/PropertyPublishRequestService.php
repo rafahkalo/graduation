@@ -28,7 +28,7 @@ class PropertyPublishRequestService
             $with = [];
         } else {
             $filters = [];
-            $with = ['user'];
+            $with = ['user', 'files'];
         }
 
         // إضافة فلتر status إذا كان غير فارغ أو غير null

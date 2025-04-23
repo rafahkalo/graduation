@@ -42,6 +42,10 @@ class PropertyRepo extends CoreRepository
             ->allowedSorts(['created_at'])
             ->allowedIncludes('units.images', 'units.features', 'location', 'user');
 
+        if (Auth::guard('api_admin')->check()) {
+            return $query->paginate($per_page);
+        }
+
         if (Auth::guard('api')->check()) {
             $query->where('user_id', Auth::id());
         } elseif (Auth::guard('api_tenant')->check()) {

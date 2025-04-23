@@ -21,5 +21,5 @@ class Country extends Model
     protected $fillable = ['code', 'name', 'phone_code', 'translation'];
     protected $appends = ['translated'];
 
-    protected $hidden = ['translation'];
+    protected $hidden = ['translation', 'created_at', 'updated_at'];
 }
