@@ -18,9 +18,9 @@ class Feature extends Model
 
     public static $translatable = ['name'];
 
-    protected $appends = ['translated', 'image_path'];
+    protected $appends = ['translated'];
 
-    protected $hidden = ['translation', 'image', 'updated_at', 'created_at', 'pivot'];
+    protected $hidden = ['translation', 'updated_at', 'created_at', 'pivot'];
 
     protected static function boot()
     {
@@ -30,10 +30,5 @@ class Feature extends Model
                 $feature->deleteImage($feature->image);
             }
         });
-    }
-
-    public function getImagePathAttribute(): string
-    {
-        return GlobalConst::SERVER_PATH . '/' . 'storage' . '/' . $this->image;
     }
 }

@@ -13,7 +13,7 @@ class CategoryController extends BaseController
     {
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         $status = request()->query('status') ?? null;
         $result = $this->categoryService->index(per_page: request()->per_page ?? 8, status: $status);
