@@ -22,9 +22,9 @@ class Category extends Model
 
     public static $translatable = ['name'];
 
-    protected $appends = ['translated', 'image_path'];
+    protected $appends = ['translated'];
 
-    protected $hidden = ['translation', 'image'];
+    protected $hidden = ['translation'];
 
     protected static function boot()
     {
@@ -34,10 +34,5 @@ class Category extends Model
                 $feature->deleteImage($feature->image);
             }
         });
-    }
-
-    public function getImagePathAttribute(): string
-    {
-        return GlobalConst::SERVER_PATH . '/' . 'storage' . '/' . $this->image;
     }
 }

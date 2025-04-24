@@ -29,6 +29,6 @@ Route::middleware(['auth:api_admin', 'localization'])->group(function () {
 
     // PropertyPublishRequest Routes
     Route::resource('property-approval-requests', PropertyPublishRequestController::class)->only(['index', 'update', 'show']);
-    Route::resource('property', PropertyController::class)->only(['index']);
+    Route::resource('property', PropertyController::class)->only(['index', 'show']);
 
 });

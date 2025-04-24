@@ -9,6 +9,7 @@ use App\Repositories\LocationRepo;
 use App\Repositories\PropertyRepo;
 use App\Repositories\propertySection\UnitFeaturesRepo;
 use App\Traits\Media;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyService
 {
@@ -64,4 +65,62 @@ class PropertyService
 
         return $response;
     }
+
+    public function show(string $id)
+    {
+        $filters = ['id' => $id];
+
+        // إعداد العلاقات بناءً على نوع المستخدم
+        if (Auth::guard('api_admin')->check()) {
+            $with = [
+                'units.images', 'units.features',
+                'location.direction',
+                'user:id,first_name,last_name,company_name,about,phone,is_verified,image,ide,commercial_registration'
+            ];
+
+            $property = $this->propertyRepo->getObject(filters: $filters, with: $with);
+        }
+
+        elseif (Auth::guard('api_tenant')->check()) {
+            $property = Property::with([
+                'units' => function ($q) {
+                    $q->where('status', 'active')->with(['images', 'features']);
+                },
+                'location.direction',
+                'user:id,first_name,last_name,company_name,about'
+            ])
+                ->where('id', $id)
+                ->first();
+        }
+
+        elseif (Auth::guard('api')->check()) {
+            $property = Property::with([
+                'units',
+                'location.direction',
+                'user'
+            ])
+                ->where('id', $id)
+                ->where('user_id', Auth::id())
+                ->first();
+        }
+
+        else {
+            $property = Property::with([
+                'units' => function ($q) {
+                    $q->where('status', 'active')->with(['images', 'features']);
+                },
+                'location.direction',
+                'user:id,first_name,last_name,company_name,about'
+            ])
+                ->where('id', $id)
+                ->first();
+        }
+
+        if (!$property) {
+            abort(404, 'Property not found');
+        }
+
+        return $property;
+    }
+
 }

@@ -27,4 +27,11 @@ class PropertyController extends BaseController
 
         return $this->apiResponse(data: $result);
     }
+
+    public function show(string $id): JsonResponse
+    {
+        $result = $this->propertyService->show($id);
+
+        return $this->apiResponse(data: $result);
+    }
 }

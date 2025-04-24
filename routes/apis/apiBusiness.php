@@ -20,5 +20,5 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
 });
 
 Route::middleware(['auth:api', 'localization', 'is_verified'])->group(function () {
-    Route::resource('property', PropertyController::class)->only(['store', 'update', 'index']);
+    Route::resource('property', PropertyController::class)->only(['store', 'update', 'index', 'show']);
 });
