@@ -58,7 +58,7 @@ class DecimalCast implements CastsAttributes
      * @param  mixed  $value
      * @param  array  $attributes
      * @return float|null
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function set($model, string $key, $value, array $attributes): ?float
     {
@@ -68,7 +68,7 @@ class DecimalCast implements CastsAttributes
 
         if (!is_numeric($value)) {
             throw new InvalidArgumentException(
-                "The value for field {$key} must be numeric, got ".gettype($value)
+                "The value for field {$key} must be numeric, got " . gettype($value)
             );
         }
 

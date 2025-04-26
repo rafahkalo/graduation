@@ -99,7 +99,8 @@ class AuthService
         JWTAuth::invalidate(JWTAuth::getToken());
 
     }
-        public function profile()
+
+    public function profile()
     {
         $user = JWTAuth::parseToken()->authenticate();
 

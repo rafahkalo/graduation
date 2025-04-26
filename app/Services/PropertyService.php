@@ -75,42 +75,36 @@ class PropertyService
             $with = [
                 'units.images', 'units.features',
                 'location.direction',
-                'user:id,first_name,last_name,company_name,about,phone,is_verified,image,ide,commercial_registration'
+                'user:id,first_name,last_name,company_name,about,phone,is_verified,image,ide,commercial_registration',
             ];
 
             $property = $this->propertyRepo->getObject(filters: $filters, with: $with);
-        }
-
-        elseif (Auth::guard('api_tenant')->check()) {
+        } elseif (Auth::guard('api_tenant')->check()) {
             $property = Property::with([
                 'units' => function ($q) {
                     $q->where('status', 'active')->with(['images', 'features']);
                 },
                 'location.direction',
-                'user:id,first_name,last_name,company_name,about'
+                'user:id,first_name,last_name,company_name,about',
             ])
                 ->where('id', $id)
                 ->first();
-        }
-
-        elseif (Auth::guard('api')->check()) {
+        } elseif (Auth::guard('api')->check()) {
             $property = Property::with([
                 'units',
                 'location.direction',
-                'user'
+                'user',
             ])
                 ->where('id', $id)
                 ->where('user_id', Auth::id())
                 ->first();
-        }
-
-        else {
+        } else {
             $property = Property::with([
                 'units' => function ($q) {
                     $q->where('status', 'active')->with(['images', 'features']);
                 },
                 'location.direction',
-                'user:id,first_name,last_name,company_name,about'
+                'user:id,first_name,last_name,company_name,about',
             ])
                 ->where('id', $id)
                 ->first();
@@ -122,5 +116,4 @@ class PropertyService
 
         return $property;
     }
-
 }

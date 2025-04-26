@@ -24,6 +24,7 @@ class Location extends Model
     public static $translatable = ['street', 'city'];
     protected $hidden = ['translation', 'created_at', 'updated_at', 'deleted_at', 'model_type', 'model_id'];
     protected $appends = ['translated'];
+
     public function direction(): BelongsTo
     {
         return $this->belongsTo(Direction::class);

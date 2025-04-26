@@ -29,6 +29,7 @@ class File extends Model
     {
         return route('files.download', $this->id);
     }
+
     public function model(): MorphTo
     {
         return $this->morphTo();

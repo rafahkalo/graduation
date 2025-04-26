@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, HasUuids, Notifiable, SoftDeletes;
@@ -54,6 +54,10 @@ class User extends Authenticatable implements JWTSubject
         ];
     }
 
+    public function businessReviews(): HasMany
+    {
+        return $this->hasMany(BusinessReview::class);
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

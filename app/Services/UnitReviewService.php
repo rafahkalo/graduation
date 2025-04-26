@@ -14,5 +14,4 @@ class UnitReviewService
     {
         return $this->unitReviewRepositories->create($data);
     }
-
 }

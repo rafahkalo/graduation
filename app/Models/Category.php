@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Const\GlobalConst;
 use App\Traits\HasUuid;
 use App\Traits\Media;
 use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasUuid, Media, Translatable;
+    use HasUuid, Media, Translatable, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -24,7 +24,7 @@ class Category extends Model
 
     protected $appends = ['translated'];
 
-    protected $hidden = ['translation'];
+    protected $hidden = ['translation', 'deleted_at', 'created_at', 'updated_at'];
 
     protected static function boot()
     {

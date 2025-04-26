@@ -40,11 +40,12 @@ return new class extends Migration {
             $table->foreignIdFor(User::class)
                 ->nullable()
                 ->constrained()
-                ->restrictOnDelete();
+                ->onDelete('no action');
+
             $table->foreignIdFor(Category::class)
                 ->nullable()
                 ->constrained()
-                ->restrictOnDelete();
+                ->onDelete('no action');
 
             $table->json('rating_details')->nullable();
             $table->json('translation')->nullable();

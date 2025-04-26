@@ -76,7 +76,7 @@ class AuthController extends BaseController
 
     public function logout(): JsonResponse
     {
-         $this->authService->logout();
+        $this->authService->logout();
 
         return $this->apiResponse();
     }

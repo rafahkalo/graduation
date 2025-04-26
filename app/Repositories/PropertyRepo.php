@@ -40,7 +40,7 @@ class PropertyRepo extends CoreRepository
                 AllowedFilter::custom('location_range', new LocationRangeFilter()),
             ])
             ->allowedSorts(['created_at'])
-            ->allowedIncludes('units.images', 'units.features', 'location', 'user');
+            ->allowedIncludes('units.images', 'units.features', 'units.category', 'location', 'user');
 
         if (Auth::guard('api_admin')->check()) {
             return $query->paginate($per_page);

@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\BaseRequest;
-
 class UnitReviewRequest extends BaseRequest
 {
     public function rules(): array

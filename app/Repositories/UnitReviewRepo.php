@@ -4,10 +4,9 @@ namespace App\Repositories;
 
 use App\Models\Unit;
 use App\Models\UnitReview;
-use mysql_xdevapi\SqlStatementResult;
 
-class UnitReviewRepo {
-
+class UnitReviewRepo
+{
     public function create(array $data)
     {
         $data['tenant_id'] = auth()->id();
@@ -20,7 +19,7 @@ class UnitReviewRepo {
         $unitReview = UnitReview::updateOrCreate(
             [
                 'tenant_id' => $data['tenant_id'],
-                'unit_id' => $data['unit_id']
+                'unit_id' => $data['unit_id'],
             ],
             $data
         );
@@ -37,7 +36,7 @@ class UnitReviewRepo {
             $data['communication'],
             $data['check_in'],
             $data['accuracy'],
-            $data['cleanliness']
+            $data['cleanliness'],
         ];
 
         return array_sum($ratings) / count($ratings);

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Const\GlobalConst;
 use App\Traits\HasUuid;
 use App\Traits\Media;
 use App\Traits\Translatable;
