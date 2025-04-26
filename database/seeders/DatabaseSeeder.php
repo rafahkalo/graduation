@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             CategorySeeder::class,
             PropertySeeder::class,
+            BusinessReviewsTableSeeder::class
         ]);
     }
 }
