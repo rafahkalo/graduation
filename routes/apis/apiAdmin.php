@@ -7,6 +7,7 @@ use App\Http\Controllers\propertySection\DirectionController;
 use App\Http\Controllers\propertySection\FeatureController;
 use App\Http\Controllers\propertySection\PropertyController;
 use App\Http\Controllers\propertySection\PropertyPublishRequestController;
+use App\Http\Controllers\propertySection\UnitController;
 use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
@@ -30,5 +31,5 @@ Route::middleware(['auth:api_admin', 'localization'])->group(function () {
     // PropertyPublishRequest Routes
     Route::resource('property-approval-requests', PropertyPublishRequestController::class)->only(['index', 'update', 'show']);
     Route::resource('property', PropertyController::class)->only(['index', 'show']);
-
+    Route::resource('unit', UnitController::class)->only(['index', 'show']);
 });

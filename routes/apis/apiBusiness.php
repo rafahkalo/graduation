@@ -3,6 +3,7 @@
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\propertySection\PropertyController;
 use App\Http\Controllers\propertySection\PropertyPublishRequestController;
+use App\Http\Controllers\propertySection\UnitController;
 use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
@@ -21,4 +22,5 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
 
 Route::middleware(['auth:api', 'localization', 'is_verified'])->group(function () {
     Route::resource('property', PropertyController::class)->only(['store', 'update', 'index', 'show']);
+    Route::resource('unit', UnitController::class)->only(['index', 'show']);
 });

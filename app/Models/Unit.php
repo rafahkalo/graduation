@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\Translatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,11 +13,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Unit extends Model
 {
-    use HasUuids, SoftDeletes;
+    use HasUuids, Translatable, SoftDeletes;
 
     protected $casts = [
         'rating_details' => 'array',
     ];
+
+    protected $appends = ['translated'];
+
+    protected $hidden = ['translation'];
+
+    public static $translatable = ['title', 'description2'];
 
     protected $fillable = [
         'id',
@@ -90,6 +98,20 @@ class Unit extends Model
           return $this->hasMany(UnitReview::class, 'unit_id');
       }
     */
+
+    public function scopeHasFeatureInUnit(Builder $query, $featureId): Builder
+    {
+        return $query->whereHas('features', function ($q) use ($featureId) {
+            $q->where('feature_id', $featureId);
+        });
+    }
+
+    public function scopeHasCategoryInUnit(Builder $query, $categoryId): Builder
+    {
+        return $query->whereHas('category', function ($q) use ($categoryId) {
+            $q->where('category_id', $categoryId);
+        });
+    }
 
     public function property(): BelongsTo
     {

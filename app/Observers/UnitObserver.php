@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Const\GlobalConst;
+use App\Jobs\TranslateModelJob;
 use App\Models\Unit;
 use App\Traits\Media;
 use Illuminate\Support\Facades\Storage;
@@ -28,6 +29,9 @@ class UnitObserver
             'current_overall_rating' => 0,
             'current_badge_code' => 0,
         ];
+        $columns = Unit::$translatable;
+        TranslateModelJob::dispatch($unit, $columns);
+
     }
 
     public function updating(Unit $unit)
@@ -44,6 +48,8 @@ class UnitObserver
                 $image->delete();
             }
         }
+        $columns = Unit::$translatable;
+        TranslateModelJob::dispatch($unit, $columns);
     }
 
     /**

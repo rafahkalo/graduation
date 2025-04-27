@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\BusinessReviewController;
+use App\Http\Controllers\propertySection\PropertyController;
+use App\Http\Controllers\propertySection\UnitController;
 use App\Http\Controllers\UnitReviewController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +19,6 @@ Route::middleware(['auth:api_tenant', 'localization'])->group(function () {
     Route::get('profile', [AuthController::class, 'profile']);
     Route::post('business-review', [BusinessReviewController::class, 'store']);
     Route::post('unit-review', [UnitReviewController::class, 'store']);
+    Route::resource('unit', UnitController::class)->only(['index', 'show']);
+    Route::resource('property', PropertyController::class)->only(['index', 'show']);
 });
