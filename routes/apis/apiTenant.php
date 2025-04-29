@@ -19,6 +19,7 @@ Route::middleware(['auth:api_tenant', 'localization'])->group(function () {
     Route::get('profile', [AuthController::class, 'profile']);
     Route::post('business-review', [BusinessReviewController::class, 'store']);
     Route::post('unit-review', [UnitReviewController::class, 'store']);
+    Route::get('businessReviews', [BusinessReviewController::class, 'businessReviews']);
     Route::resource('unit', UnitController::class)->only(['index', 'show']);
     Route::resource('property', PropertyController::class)->only(['index', 'show']);
 });
