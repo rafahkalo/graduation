@@ -20,4 +20,10 @@ return [
 
     'status_change_not_allowed' => 'لا يمكنك تغيير الحالة إلى "جاري الانتظار" بعد أن تم رفض الطلب.',
     'status_updated_success' => 'تم تحديث الحالة بنجاح.',
+    'coupon_not_found' => 'الكوبون غير موجود.',
+    'coupon_inactive' => 'الكوبون غير نشط.',
+    'coupon_not_started' => 'الكوبون لم يبدأ بعد.',
+    'coupon_expired' => 'الكوبون قد انتهت صلاحيته.',
+    'coupon_max_uses' => 'تم استخدام الكوبون الحد الأقصى.',
+    'coupon_user_max_uses' => 'تم استخدام الكوبون من قبل المستخدم الحد الأقصى.',
 ];

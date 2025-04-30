@@ -22,5 +22,10 @@ return [
 
     'status_change_not_allowed' => 'You cannot change the status to "pending" after it has been rejected.',
     'status_updated_success' => 'The status has been updated successfully.',
-
+    'coupon_not_found' => 'The coupon does not exist.',
+    'coupon_inactive' => 'The coupon is inactive.',
+    'coupon_not_started' => 'The coupon has not started yet.',
+    'coupon_expired' => 'The coupon has expired.',
+    'coupon_max_uses' => 'The coupon has reached its maximum uses.',
+    'coupon_user_max_uses' => 'The user has reached the maximum uses for this coupon.',
 ];

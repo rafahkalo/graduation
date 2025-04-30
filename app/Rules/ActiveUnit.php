@@ -51,7 +51,7 @@ class ActiveUnit implements Rule
         $userQuery = DB::table('units')
             ->join('users', 'units.user_id', '=', 'users.id')
             ->where('units.id', $value)
-            ->where('users.agree_installment', 1);
+            ->where('users.is_verified', 1);
 
         if (!$userQuery->exists()) {
             $this->errorMessage = 'The owner of this unit is not eligible for installment.';
