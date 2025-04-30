@@ -34,4 +34,11 @@ class PropertyController extends BaseController
 
         return $this->apiResponse(data: $result);
     }
+
+    public function configHome(): JsonResponse
+    {
+        $result = $this->propertyService->configHome();
+
+        return $this->apiResponse(data: $result);
+    }
 }

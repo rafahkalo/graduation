@@ -15,7 +15,7 @@ class FeatureService
     {
     }
 
-    public function index(int $per_page, ?string $status = null): Collection|LengthAwarePaginator
+    public function index(int $per_page = 0, ?string $status = null): Collection|LengthAwarePaginator
     {
         return $this->featureRepo->index(
             per_page: $per_page,

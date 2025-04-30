@@ -8,6 +8,7 @@ use App\Models\UnitFeatures;
 use App\Repositories\LocationRepo;
 use App\Repositories\PropertyRepo;
 use App\Repositories\propertySection\UnitFeaturesRepo;
+use App\Services\propertySection\FeatureService;
 use App\Traits\Media;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,8 @@ class PropertyService
         private LocationRepo $locationRepo,
         private UnitService $unitService,
         private UnitFeaturesRepo $unitFeaturesRepo,
+        private CategoryService $categoryService,
+        private FeatureService $featureService,
     ) {
     }
 
@@ -115,5 +118,13 @@ class PropertyService
         }
 
         return $property;
+    }
+
+    public function configHome(): array
+    {
+        $response = [];
+        $response['categories'] = $this->categoryService->index(status: 'active');
+        $response['features'] = $this->featureService->index(status: 'active');
+        return $response;
     }
 }

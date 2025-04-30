@@ -13,4 +13,5 @@ Route::group(['middleware' => ['localization']], function () {
     Route::resource('direction', DirectionController::class);
     Route::resource('unit', UnitController::class)->only(['index', 'show']);
     Route::get('businessReviews', [BusinessReviewController::class, 'businessReviews']);
+    Route::get('config-home', [PropertyController::class, 'configHome']);
 });
