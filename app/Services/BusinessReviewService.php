@@ -44,7 +44,7 @@ class BusinessReviewService
                 'businessReviews',
                 'businessReviews as average_rating' => function ($query) {
                     $query->select(DB::raw('ROUND(COALESCE(AVG(rating), 0), 2)'));
-                }
+                },
             ])
             ->having('average_rating', '>', 0)
             ->orderByDesc('average_rating')

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\propertySection;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
-use App\Services\PropertyService;
 use App\Services\UnitService;
 use Illuminate\Http\JsonResponse;
 

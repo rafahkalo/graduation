@@ -23,6 +23,7 @@ class BusinessReviewsTableSeeder extends Seeder
 
         if ($users->isEmpty() || $tenants->isEmpty()) {
             $this->command->info('No users or tenants found! Please seed users and tenants first.');
+
             return;
         }
 

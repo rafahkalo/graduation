@@ -25,6 +25,7 @@ class Offer extends Model
         // إذا كان العرض من نوع "نسبة مئوية"
         if ($this->type_offer === 'percent') {
             $discount = ($this->value_offer / 100) * $basePrice;
+
             return $basePrice - $discount;
         }
 

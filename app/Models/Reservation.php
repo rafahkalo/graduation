@@ -26,6 +26,7 @@ class Reservation extends Model
         'offer_amount',
         'platform_commission_amount',
         'user_id',
-        'tenant_id'
+        'tenant_id',
+        'unit_id',
     ];
 }

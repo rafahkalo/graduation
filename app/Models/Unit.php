@@ -52,6 +52,7 @@ class Unit extends Model
         'translation',
         'guard_name',
         'guard_phone',
+        'bookings_count'
     ];
 
     protected static function boot()
@@ -86,7 +87,6 @@ class Unit extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 
     public function category(): BelongsTo
     {

@@ -14,7 +14,6 @@ class Tenant extends Authenticatable implements JWTSubject
 
     protected $fillable = ['first_name', 'last_name', 'national_id', 'birth_date', 'gender', 'phone', 'ide', 'image'];
 
-
     public function getJWTIdentifier()
     {
         return $this->getKey();

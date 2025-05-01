@@ -3,13 +3,20 @@
 namespace App\Http\Requests;
 
 use App\Rules\ActiveUnit;
-use App\Rules\CouponValid;
+use App\Rules\ReservationStatusPending;
 
-class calculationPrice extends BaseRequest
+class AddReservationRequest extends BaseRequest
 {
     public function rules(): array
     {
+        $reservationId = $this->input('reservation_id');
+
         return [
+            'reservation_id' => [
+                'required',
+                'exists:reservations,id',
+                new ReservationStatusPending($reservationId),
+            ],
             'unit_id' => [
                 'required',
                 'exists:units,id',
@@ -25,8 +32,6 @@ class calculationPrice extends BaseRequest
                 'date',
                 'after:from'
             ],
-            'coupon_code' => ['sometimes', new CouponValid()],
-            'reservation_source' => 'required|in:app,reception',
         ];
     }
 }

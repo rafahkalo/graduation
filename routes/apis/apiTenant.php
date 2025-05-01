@@ -24,5 +24,6 @@ Route::middleware(['auth:api_tenant', 'localization'])->group(function () {
     Route::get('businessReviews', [BusinessReviewController::class, 'businessReviews']);
     Route::resource('unit', UnitController::class)->only(['index', 'show']);
     Route::post('calculation-price', [ReservationController::class, 'calculationPrice']);
+    Route::post('confirm-reservation', [ReservationController::class, 'confirmReservation']);
     Route::resource('property', PropertyController::class)->only(['index', 'show']);
 });

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Coupon;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -36,7 +35,7 @@ class CouponsTableSeeder extends Seeder
                 'max_uses' => 200,
                 'max_uses_per_user' => 2,
                 'starts_at' => now()->subDays(5),
-                'expires_at' => now()->addWeek(),
+                'expires_at' => now()->addMonth(),
                 'status' => 'active',
                 'description' => 'Flat discount for all services',
                 'minimum_reservation_amount' => null,
@@ -64,7 +63,7 @@ class CouponsTableSeeder extends Seeder
                 'type' => $couponData['type'],
                 'value' => $couponData['value'],
                 'max_uses' => $couponData['max_uses'],
-                'current_uses' => rand(0, $couponData['max_uses'] ? (int)($couponData['max_uses'] * 0.3) : 50),
+                'current_uses' => rand(0, $couponData['max_uses'] ? (int) ($couponData['max_uses'] * 0.3) : 50),
                 'max_uses_per_user' => $couponData['max_uses_per_user'],
                 'starts_at' => $couponData['starts_at'],
                 'expires_at' => $couponData['expires_at'],

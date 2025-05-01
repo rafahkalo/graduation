@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Property;
 use App\Models\Unit;
-use App\Repositories\CoreRepository;
 use App\Repositories\UnitRepo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -52,7 +50,7 @@ class UnitService
                 'user:id,first_name,last_name,company_name,about',
             ])
                 ->where('id', $id)
-                ->where('status', '=','active')
+                ->where('status', '=', 'active')
                 ->first();
         } elseif (Auth::guard('api')->check()) {
             $unit = Unit::with([
@@ -64,14 +62,14 @@ class UnitService
                 ->where('user_id', Auth::id())
                 ->first();
         } else {
-                $unit = Unit::with([
-                    'images', 'features',
-                    'property.location.direction',
-                    'user:id,first_name,last_name,company_name,about',
-                ])
-                    ->where('id', $id)
-                    ->where('status', '=','active')
-                    ->first();
+            $unit = Unit::with([
+                'images', 'features',
+                'property.location.direction',
+                'user:id,first_name,last_name,company_name,about',
+            ])
+                ->where('id', $id)
+                ->where('status', '=', 'active')
+                ->first();
         }
 
         if (!$unit) {

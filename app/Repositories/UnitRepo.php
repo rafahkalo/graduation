@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Filters\LocationRangeFilter;
 use App\Filters\MultiColumnSearchFilter;
-use App\Models\Property;
 use App\Models\Unit;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -53,7 +52,6 @@ class UnitRepo extends CoreRepository
         if ($categoryId) {
             $query->hasCategoryInUnit($categoryId);
         }
-
 
         return $query->paginate($per_page);
     }

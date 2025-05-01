@@ -6,4 +6,5 @@ return [
     'unauthorized' => 'غير مصرح لك بتنفيذ هذا الإجراء.',
     'true' => 'تم نجاح العملية',
     'account_not_verified' => 'حسابك غير موثق.',
+    'booking_success' => 'تم الحجز بنجاح',
 ];

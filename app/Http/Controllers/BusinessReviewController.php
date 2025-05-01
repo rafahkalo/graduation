@@ -22,7 +22,7 @@ class BusinessReviewController extends BaseController
 
     public function businessReviews(): JsonResponse
     {
-        $result = $this->businessReviewService->businessReviews (request()->per_page ?? 8);
+        $result = $this->businessReviewService->businessReviews(request()->per_page ?? 8);
 
         return $this->apiResponse(data: $result);
     }

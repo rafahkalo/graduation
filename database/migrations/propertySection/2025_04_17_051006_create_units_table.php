@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->text('description2')->nullable();
             $table->text('main_image')->nullable();
             $table->integer('street_width')->default(0);
+            $table->integer('bookings_count')->default(0);
             $table->decimal('space', 20, 2)->default(0);
             $table->enum('equipment', ['furnished', 'unfurnished'])->default('furnished');
             $table->enum('property_type', ['commercial_and_residential', 'commercial', 'residential'])->default('commercial_and_residential');

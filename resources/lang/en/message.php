@@ -6,4 +6,5 @@ return [
     'unauthorized' => 'You are not authorized to perform this action.',
     'true' => 'Operation was successful.',
     'account_not_verified' => 'Your account is not verified.',
+    'booking_success' => 'Booking completed successfully',
 ];

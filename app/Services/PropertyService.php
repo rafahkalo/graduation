@@ -125,6 +125,7 @@ class PropertyService
         $response = [];
         $response['categories'] = $this->categoryService->index(status: 'active');
         $response['features'] = $this->featureService->index(status: 'active');
+
         return $response;
     }
 }
