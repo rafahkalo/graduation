@@ -25,12 +25,12 @@ class AddReservationRequest extends BaseRequest
             'from' => [
                 'required',
                 'date',
-                'after_or_equal:today' // لا يسمح بحجز تواريخ قديمة
+                'after_or_equal:today', // لا يسمح بحجز تواريخ قديمة
             ],
             'to' => [
                 'required',
                 'date',
-                'after:from'
+                'after:from',
             ],
         ];
     }

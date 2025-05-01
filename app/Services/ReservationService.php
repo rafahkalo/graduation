@@ -8,6 +8,7 @@ use App\Models\Offer;
 use App\Models\Reservation;
 use App\Models\Unit;
 use App\Repositories\ReservationRepo;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -53,6 +54,7 @@ class ReservationService
             $response['from'] = $data['from'];
             $response['to'] = $data['to'];
             $response['unit_id'] = $data['unit_id'];
+
             return $this->reservationRepo->create($response);
         } else {
             return $response;
@@ -100,11 +102,53 @@ class ReservationService
             return [
                 'reservation_id' => $data['reservation_id'],
                 'unit_id' => $data['unit_id'],
-                'status' => 'accept'
+                'status' => 'accept',
             ];
 
         } finally {
             $lock->release();
         }
+    }
+
+    public function getAvailableDaysForUnit($unitId, $from, $to): array
+    {
+        // تحويل التواريخ إلى كائنات Carbon
+        $startDate = Carbon::parse($from)->startOfDay();
+        $endDate = Carbon::parse($to)->endOfDay();
+
+        // جلب الحجوزات الخاصة بهذه الوحدة ضمن الفترة
+        $reservations = Reservation::where('unit_id', $unitId)
+            ->where('status', 'accept')
+            ->where(function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('from', [$startDate, $endDate])
+                    ->orWhereBetween('to', [$startDate, $endDate])
+                    ->orWhere(function ($q) use ($startDate, $endDate) {
+                        $q->where('from', '<', $startDate)
+                            ->where('to', '>', $endDate);
+                    });
+            })
+            ->get(['from', 'to']);
+
+        // توليد جميع الأيام في الفترة
+        $allDays = collect();
+        for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+            $allDays->push($date->toDateString());
+        }
+
+        // جمع الأيام المحجوزة
+        $bookedDays = collect();
+        foreach ($reservations as $reservation) {
+            $from = Carbon::parse($reservation->from);
+            $to = Carbon::parse($reservation->to);
+
+            for ($date = $from; $date->lte($to); $date->addDay()) {
+                $bookedDays->push($date->toDateString());
+            }
+        }
+
+        // طرح الأيام المحجوزة من الكل
+        $availableDays = $allDays->diff($bookedDays->unique())->values();
+
+        return $availableDays->all(); // ترجع مصفوفة من الأيام المتاحة
     }
 }

@@ -16,4 +16,5 @@ Route::group(['middleware' => ['localization']], function () {
     Route::get('businessReviews', [BusinessReviewController::class, 'businessReviews']);
     Route::get('config-home', [PropertyController::class, 'configHome']);
     Route::post('calculation-price', [ReservationController::class, 'calculationPrice']);
+    Route::get('getAvailableDaysForUnit', [ReservationController::class, 'getAvailableDaysForUnit']);
 });

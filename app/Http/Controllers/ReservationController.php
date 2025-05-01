@@ -28,9 +28,17 @@ class ReservationController extends BaseController
 
         try {
             $result = $this->reservationService->confirmReservationService($validatedData);
+
             return $this->apiResponse(data: $result, message: 'booking_success', statusCode: 201);
         } catch (\Exception $e) {
             return $this->apiResponse(message: $e->getMessage(), statusCode: 400);
         }
+    }
+
+    public function getAvailableDaysForUnit(): JsonResponse
+    {
+        $result = $this->reservationService->getAvailableDaysForUnit(request()->unit_id, request()->from, request()->to);
+
+        return $this->apiResponse(data: $result);
     }
 }

@@ -52,7 +52,7 @@ class Unit extends Model
         'translation',
         'guard_name',
         'guard_phone',
-        'bookings_count'
+        'bookings_count',
     ];
 
     protected static function boot()
