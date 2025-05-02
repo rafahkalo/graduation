@@ -31,6 +31,8 @@ class PropertyRepo extends CoreRepository
     {
         $featureId = request('featureId') ?? null;
         $categoryId = request('categoryId') ?? null;
+        $city = request('city') ?? null;
+
         $query = QueryBuilder::for(Property::class)
             ->allowedFilters([
                 AllowedFilter::custom('search', new MultiColumnSearchFilter([
@@ -60,6 +62,10 @@ class PropertyRepo extends CoreRepository
 
         if ($featureId) {
             $query->hasFeatureInUnit($featureId);
+        }
+
+        if ($city) {
+            $query->hasLocation($city);
         }
 
         if ($categoryId) {

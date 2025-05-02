@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             PropertySeeder::class,
             BusinessReviewsTableSeeder::class,
+            TenantsTableSeeder::class,
         ]);
     }
 }

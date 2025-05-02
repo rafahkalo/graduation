@@ -48,6 +48,13 @@ class Property extends Model
         });
     }
 
+    public function scopeHasLocation(Builder $query, $city): Builder
+    {
+        return $query->whereHas('location', function ($q) use ($city) {
+            $q->where('city', $city);
+        });
+    }
+
     public function scopeHasCategoryInUnit(Builder $query, $categoryId): Builder
     {
         return $query->whereHas('units', function ($q) use ($categoryId) {
