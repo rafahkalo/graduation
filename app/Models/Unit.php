@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
 class Unit extends Model
 {
     use HasUuids, Translatable, SoftDeletes;
@@ -18,8 +18,7 @@ class Unit extends Model
     protected $casts = [
         'rating_details' => 'array',
     ];
-
-    protected $appends = ['translated'];
+    protected $appends = ['translated', 'has_active_offer'];
 
     protected $hidden = ['translation'];
 
@@ -121,5 +120,20 @@ class Unit extends Model
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function hasActiveOffer(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->offers()
+                ->whereDate('from', '<=', now())
+                ->whereDate('to', '>=', now())
+                ->exists()
+        );
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
     }
 }
