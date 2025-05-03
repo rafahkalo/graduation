@@ -7,4 +7,6 @@ return [
     'true' => 'تم نجاح العملية',
     'account_not_verified' => 'حسابك غير موثق.',
     'booking_success' => 'تم الحجز بنجاح',
-];
+    'success_coupon' => '✅ الكوبون يخصم :discount ريال من :price ريال — السعر بعد الخصم: :final ريال',
+
+ ];

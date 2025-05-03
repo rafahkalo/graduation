@@ -30,7 +30,7 @@ class UnitController extends BaseController
     public function update(updateStatusRequest $request): JsonResponse
     {
         $validatedData = $request->validated();
-         $result = $this->unitService->update($validatedData);
+        $result = $this->unitService->update($validatedData);
 
         return $this->apiResponse(data: $result);
     }

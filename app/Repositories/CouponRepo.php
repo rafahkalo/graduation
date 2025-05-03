@@ -2,7 +2,12 @@
 
 namespace App\Repositories;
 
-class CouponRepo
+use App\Models\Coupon;
+
+class CouponRepo extends CoreRepository
 {
-    // Add your repository logic here
+    public function __construct(Coupon $model)
+    {
+        parent::__construct($model);
+    }
 }

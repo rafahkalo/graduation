@@ -81,11 +81,12 @@ class UnitService
 
     public function update($data)
     {
-        if($data['accept_by_admin'] == 'accepted') {
+        if ($data['accept_by_admin'] == 'accepted') {
             $data['status'] = 'active';
-        } elseif ($data['accept_by_admin'] == 'refused'){
+        } elseif ($data['accept_by_admin'] == 'refused') {
             $data['status'] = 'refuse';
         }
+
         return $this->unitRepo->update($data, $data['unit']);
     }
 }

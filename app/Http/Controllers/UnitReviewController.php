@@ -18,6 +18,5 @@ class UnitReviewController extends BaseController
         $result = $this->unitReviewService->store($validatedData);
 
         return $this->apiResponse(data: $result);
-
     }
 }

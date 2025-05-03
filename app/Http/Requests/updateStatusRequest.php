@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 class updateStatusRequest extends BaseRequest
 {
     public function rules()
-
     {
         return [
             'unit' => 'required|exists:units,id',

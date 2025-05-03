@@ -21,13 +21,14 @@ return new class extends Migration {
             $table->unsignedInteger('max_uses_per_user')->nullable();
             $table->date('starts_at');
             $table->date('expires_at');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->text('description')->nullable();
             $table->unsignedInteger('minimum_reservation_amount')->nullable();
             $table->foreignIdFor(User::class)
                 ->nullable()
                 ->constrained()
                 ->onDelete('no action');
+            $table->unique(['user_id', 'code']);
             $table->softDeletes();
             $table->timestamps();
         });
