@@ -23,6 +23,7 @@ class PropertyService
         private UnitFeaturesRepo $unitFeaturesRepo,
         private CategoryService $categoryService,
         private FeatureService $featureService,
+        private DirectionService $directionService
     ) {
     }
 
@@ -126,6 +127,9 @@ class PropertyService
         $response['categories'] = $this->categoryService->index(status: 'active');
         $response['features'] = $this->featureService->index(status: 'active');
 
+        if (Auth::guard('api')->check()) {
+            $response['directions'] = $this->directionService->index(status: 'active');
+        }
         return $response;
     }
 }
