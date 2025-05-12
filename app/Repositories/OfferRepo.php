@@ -2,7 +2,12 @@
 
 namespace App\Repositories;
 
-class OfferRepo
+use App\Models\Offer;
+
+class OfferRepo extends CoreRepository
 {
-    // Add your repository logic here
+    public function __construct(Offer $model)
+    {
+        parent::__construct($model);
+    }
 }

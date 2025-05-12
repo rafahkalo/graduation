@@ -7,7 +7,6 @@ use App\Rules\UserOwnsModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
-use Illuminate\Support\Facades\App;
 
 class CouponRequest extends BaseRequest
 {
@@ -44,7 +43,7 @@ class CouponRequest extends BaseRequest
             'coupon' => [
                 'required',
                'exists:coupons,id',
-                new UserOwnsModel(Coupon::class)
+                new UserOwnsModel(Coupon::class),
 
         ],
             'type' => ['sometimes', Rule::in(['fixed', 'percent'])],
@@ -64,8 +63,8 @@ class CouponRequest extends BaseRequest
             'coupon' => [
                 'required',
                 'exists:coupons,id',
-                new UserOwnsModel(Coupon::class)
-            ]
+                new UserOwnsModel(Coupon::class),
+            ],
         ];
     }
 

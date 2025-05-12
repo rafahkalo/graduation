@@ -4,11 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Offer extends Model
 {
     use HasUuids, SoftDeletes;
+    protected $fillable = [
+        'name',
+        'num_usage',
+        'remaining_usage',
+        'status',
+        'type_offer',
+        'value_offer',
+        'from',
+        'to',
+        'unit_id',
+        'user_id',
+    ];
 
     public static function getActiveOfferForUnit($unitId)
     {
@@ -36,5 +49,10 @@ class Offer extends Model
 
         // إذا لم يكن هناك عرض، نعيد السعر الأساسي
         return $basePrice;
+    }
+
+    public function reservations(): HasMany
+    {
+        return $this->hasMany(Reservation::class)->where('status', 'accept');
     }
 }

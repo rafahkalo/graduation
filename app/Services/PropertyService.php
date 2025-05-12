@@ -130,6 +130,7 @@ class PropertyService
         if (Auth::guard('api')->check()) {
             $response['directions'] = $this->directionService->index(status: 'active');
         }
+
         return $response;
     }
 }

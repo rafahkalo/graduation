@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\propertySection\PropertyController;
 use App\Http\Controllers\propertySection\PropertyPublishRequestController;
 use App\Http\Controllers\propertySection\UnitController;
@@ -25,5 +26,6 @@ Route::middleware(['auth:api', 'localization', 'is_verified'])->group(function (
     Route::resource('property', PropertyController::class)->only(['store', 'update', 'index', 'show']);
     Route::resource('unit', UnitController::class)->only(['index', 'show']);
     Route::resource('coupon', CouponController::class)->only(['store', 'show', 'update', 'index', 'destroy']);
+    Route::resource('offer', OfferController::class)->only(['store', 'show', 'update', 'index', 'destroy']);
     Route::get('config-home', [PropertyController::class, 'configHome']);
 });

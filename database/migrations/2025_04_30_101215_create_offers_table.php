@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Unit;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,6 +23,7 @@ return new class extends Migration {
             $table->date('from');
             $table->date('to');
             $table->foreignIdFor(Unit::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

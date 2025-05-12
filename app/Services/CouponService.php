@@ -24,15 +24,14 @@ class CouponService
         if (Auth::guard('api')->check()) {
             $filters['user_id'] = Auth::id();
         }
-        if (Auth::guard('api_admin')->check())
-        {
+        if (Auth::guard('api_admin')->check()) {
             $with = ['user'];
         }
 
         return $this->couponRepo->index(
             per_page: $per_page,
             filters: $filters,
-            with:  $with
+            with: $with
         );
     }
 
@@ -48,7 +47,12 @@ class CouponService
 
     public function destroy(array $data): void
     {
-        $this->couponRepo->delete($data['coupon']);
+        $conditions = [
+            'id' => $data['coupon'],
+            'user_id' => Auth::id(),
+        ];
+
+        $this->couponRepo->delete($conditions);
     }
 
     public function show(string $couponId)
@@ -58,10 +62,9 @@ class CouponService
         if (Auth::guard('api')->check()) {
             $filters['user_id'] = Auth::id();
         }
-         if (Auth::guard('api_admin')->check())
-         {
-             $with = ['user'];
-         }
+        if (Auth::guard('api_admin')->check()) {
+            $with = ['user'];
+        }
 
         return $this->couponRepo->getObject(filters: $filters, with: $with);
     }
