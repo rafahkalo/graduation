@@ -46,6 +46,11 @@ class CouponService
         return $this->couponRepo->update($data, $data['coupon']);
     }
 
+    public function destroy(array $data): void
+    {
+        $this->couponRepo->delete($data['coupon']);
+    }
+
     public function show(string $couponId)
     {
         $with = [];

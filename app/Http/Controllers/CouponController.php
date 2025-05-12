@@ -62,4 +62,12 @@ class CouponController extends BaseController
 
         return $this->apiResponse(data: $result);
     }
+
+    public function destroy(CouponRequest $request): JsonResponse
+    {
+        $validatedData = $request->validated();
+         $this->couponService->destroy($validatedData);
+
+        return $this->apiResponse();
+    }
 }

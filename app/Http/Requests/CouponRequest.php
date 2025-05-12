@@ -7,12 +7,13 @@ use App\Rules\UserOwnsModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\App;
 
 class CouponRequest extends BaseRequest
 {
     public function rules(): array
     {
-        return $this->isMethod('POST') ? $this->store() : $this->update();
+        return $this->isMethod('POST') ? $this->store() : ($this->isMethod('DELETE') ? $this->destroy() : $this->update());
     }
 
     public function store(): array
@@ -57,6 +58,16 @@ class CouponRequest extends BaseRequest
         ];
     }
 
+    public function destroy(): array
+    {
+        return [
+            'coupon' => [
+                'required',
+                'exists:coupons,id',
+                new UserOwnsModel(Coupon::class)
+            ]
+        ];
+    }
 
     public function messages(): array
     {
@@ -70,6 +81,7 @@ class CouponRequest extends BaseRequest
     {
         $validator->after(function ($validator) {
             $couponId = $this->route('coupon');
+            $coupon = null;
 
             if (is_string($couponId)) {
                 $coupon = Coupon::where('id', $couponId)
@@ -77,8 +89,16 @@ class CouponRequest extends BaseRequest
                     ->first();
             }
 
-            if ($coupon && $coupon->reservations()->exists()) {
-                $validator->errors()->add('coupon', 'لا يمكن تعديل هذا الكوبون لأنه مرتبط بحجوزات.');
+            // حالة DELETE: تحقق من وجود الحجوزات
+            if ($this->isMethod('DELETE')) {
+                if ($coupon && $coupon->reservations()->exists()) {
+                    $validator->errors()->add('coupon', __('coupon.delete_coupon_has_reservations'));
+                }
+            }
+
+            // حالة POST أو UPDATE: تحقق من وجود الحجوزات
+            if (!$this->isMethod('DELETE') && $coupon && $coupon->reservations()->exists()) {
+                $validator->errors()->add('coupon', __('coupon.coupon_has_reservations'));
             }
         });
     }
