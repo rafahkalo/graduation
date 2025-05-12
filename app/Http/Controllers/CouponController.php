@@ -47,4 +47,19 @@ class CouponController extends BaseController
             messageParams: $result['message_params'] ?? []
         );
     }
+
+    public function show($couponId): JsonResponse
+    {
+        $result = $this->couponService->show($couponId);
+
+        return $this->apiResponse(data: $result);
+    }
+
+    public function update(CouponRequest $request): JsonResponse
+    {
+        $validatedData = $request->validated();
+        $result = $this->couponService->update($validatedData);
+
+        return $this->apiResponse(data: $result);
+    }
 }

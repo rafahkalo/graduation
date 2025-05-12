@@ -2,11 +2,20 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Coupon;
+use App\Rules\UserOwnsModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class CouponRequest extends BaseRequest
 {
     public function rules(): array
+    {
+        return $this->isMethod('POST') ? $this->store() : $this->update();
+    }
+
+    public function store(): array
     {
         return [
             'code' => [
@@ -28,11 +37,49 @@ class CouponRequest extends BaseRequest
         ];
     }
 
+    public function update(): array
+    {
+        return [
+            'coupon' => [
+                'required',
+               'exists:coupons,id',
+                new UserOwnsModel(Coupon::class)
+
+        ],
+            'type' => ['sometimes', Rule::in(['fixed', 'percent'])],
+            'value' => ['sometimes', 'integer', 'min:1'],
+            'max_uses' => ['sometimes', 'integer', 'min:1'],
+            'max_uses_per_user' => ['sometimes', 'integer', 'min:1'],
+            'starts_at' => ['sometimes', 'date'],
+            'expires_at' => ['sometimes', 'date', 'after_or_equal:starts_at'],
+            'description' => ['sometimes', 'string'],
+            'minimum_reservation_amount' => ['sometimes', 'integer', 'min:1000'],
+        ];
+    }
+
+
     public function messages(): array
     {
         return [
             'code.unique' => 'الكوبون موجود بالفعل لهذا المؤجر.',
             'expires_at.after_or_equal' => 'تاريخ الانتهاء يجب أن يكون بعد أو يساوي تاريخ البداية.',
         ];
+    }
+
+    public function withValidator(Validator $validator)
+    {
+        $validator->after(function ($validator) {
+            $couponId = $this->route('coupon');
+
+            if (is_string($couponId)) {
+                $coupon = Coupon::where('id', $couponId)
+                    ->where('user_id', Auth::id())
+                    ->first();
+            }
+
+            if ($coupon && $coupon->reservations()->exists()) {
+                $validator->errors()->add('coupon', 'لا يمكن تعديل هذا الكوبون لأنه مرتبط بحجوزات.');
+            }
+        });
     }
 }

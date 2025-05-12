@@ -30,7 +30,8 @@ class PropertyPublishRequest extends Model
         return $this->belongsTo(User::class)->select(['id', 'first_name', 'last_name', 'company_name', 'phone', 'about', 'commercial_registration', 'ide']);
     }
 
-    public function scopePending($query)
+
+        public function scopePending($query)
     {
         return $query->where('status', 'pending');
     }

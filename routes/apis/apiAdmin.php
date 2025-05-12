@@ -34,5 +34,5 @@ Route::middleware(['auth:api_admin', 'localization'])->group(function () {
     Route::resource('property', PropertyController::class)->only(['index', 'show']);
     Route::resource('unit', UnitController::class)->only(['index', 'show', 'update']);
     Route::post('test-coupon', [CouponController::class, 'testCoupon']);
-    Route::resource('coupon', CouponController::class)->only(['index']);
+    Route::resource('coupon', CouponController::class)->only(['index', 'show']);
 });

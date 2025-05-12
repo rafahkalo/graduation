@@ -6,6 +6,7 @@ use App\Models\Coupon;
 use App\Repositories\CouponRepo;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 
 class CouponService
 {
@@ -15,17 +16,49 @@ class CouponService
 
     public function index(int $per_page = 0, ?string $status = null): Collection|LengthAwarePaginator
     {
+        $with = [];
+        $filters = array_filter([
+            'status' => $status,
+        ]);
+
+        if (Auth::guard('api')->check()) {
+            $filters['user_id'] = Auth::id();
+        }
+        if (Auth::guard('api_admin')->check())
+        {
+            $with = ['user'];
+        }
+
         return $this->couponRepo->index(
             per_page: $per_page,
-            filters: array_filter([
-                'status' => $status,
-            ])
+            filters: $filters,
+            with:  $with
         );
     }
 
     public function store(array $data)
     {
         return $this->couponRepo->create($data);
+    }
+
+    public function update(array $data)
+    {
+        return $this->couponRepo->update($data, $data['coupon']);
+    }
+
+    public function show(string $couponId)
+    {
+        $with = [];
+        $filters = ['id' => $couponId];
+        if (Auth::guard('api')->check()) {
+            $filters['user_id'] = Auth::id();
+        }
+         if (Auth::guard('api_admin')->check())
+         {
+             $with = ['user'];
+         }
+
+        return $this->couponRepo->getObject(filters: $filters, with: $with);
     }
 
     public function simulateCoupon(array $data): array

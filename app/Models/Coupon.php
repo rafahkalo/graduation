@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Coupon extends Model
 {
     use HasUuids, SoftDeletes;
@@ -24,4 +25,13 @@ class Coupon extends Model
         'minimum_reservation_amount',
         'user_id',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function reservations(): HasMany
+    {
+        return $this->hasMany(Reservation::class)->where('status', 'accept');
+    }
 }
