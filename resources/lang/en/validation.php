@@ -28,4 +28,9 @@ return [
     'coupon_expired' => 'The coupon has expired.',
     'coupon_max_uses' => 'The coupon has reached its maximum uses.',
     'coupon_user_max_uses' => 'The user has reached the maximum uses for this coupon.',
+    'custom' => [
+        'people_count' => [
+            'exceeds_unit_limit' => 'The number of people exceeds the allowed limit for the unit.',
+        ],
+    ],
 ];

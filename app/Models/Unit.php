@@ -39,6 +39,7 @@ class Unit extends Model
         'status',
         'reservation_type',
         'deposit',
+        'num_person',
         'reservation_status',
         'accept_by_admin',
         'message_of_admin',

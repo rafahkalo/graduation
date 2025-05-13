@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\ActiveUnit;
 use App\Rules\CouponValid;
+use App\Rules\ValidPeopleCount;
 
 class calculationPrice extends BaseRequest
 {
@@ -27,6 +28,12 @@ class calculationPrice extends BaseRequest
             ],
             'coupon_code' => ['sometimes', new CouponValid()],
             'reservation_source' => 'required|in:app,reception',
+            'num_person' => [
+                'required',
+                'integer',
+                'min:1',
+                new ValidPeopleCount($this->unit_id),
+            ],
         ];
     }
 }

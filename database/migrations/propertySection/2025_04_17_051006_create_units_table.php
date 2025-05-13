@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->enum('equipment', ['furnished', 'unfurnished'])->default('furnished');
             $table->enum('property_type', ['commercial_and_residential', 'commercial', 'residential'])->default('commercial_and_residential');
             $table->integer('floor')->default(0);
+            $table->integer('num_person')->default(0);
             $table->integer('property_age')->default(0);
             $table->enum('status', ['active', 'inactive', 'wait', 'refuse'])->default('wait');
             $table->enum('reservation_type', ['monthly', 'yearly']);
