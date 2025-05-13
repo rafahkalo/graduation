@@ -76,7 +76,7 @@ class PropertyPublishRequestService
     public function show(string $property_approval_request_id)
     {
         $filters = ['id' => $property_approval_request_id];
-        $with = ['user'];
+        $with = ['user', 'files'];
 
         return $this->publishRequestRepo->getObject(filters: $filters, with: $with);
     }
