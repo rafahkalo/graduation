@@ -8,5 +8,6 @@ return [
     'account_not_verified' => 'حسابك غير موثق.',
     'booking_success' => 'تم الحجز بنجاح',
     'success_coupon' => '✅ الكوبون يخصم :discount ريال من :price ريال — السعر بعد الخصم: :final ريال',
-
+    'property_unavailable' => 'العقار غير متاح في هذه الفترة',
+    'try_again' => 'العملية جارية، حاول لاحقًا',
  ];

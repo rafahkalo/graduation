@@ -43,7 +43,7 @@ class OfferController extends BaseController
         return $this->apiResponse(data: $result);
     }
 
-        public function destroy(OfferRequest $request): JsonResponse
+    public function destroy(OfferRequest $request): JsonResponse
     {
         $validatedData = $request->validated();
         $this->offerService->destroy($validatedData);

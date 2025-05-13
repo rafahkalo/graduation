@@ -66,7 +66,7 @@ class ReservationService
         $lock = Cache::lock('property_booking:' . $data['unit_id'], 10);
 
         if (!$lock->get()) {
-            throw new \Exception('العملية جارية، حاول لاحقًا');
+            throw new \Exception('try_again');
         }
 
         try {
@@ -85,7 +85,7 @@ class ReservationService
                     ->exists();
 
                 if ($overlapping) {
-                    throw new \Exception('العقار غير متاح في هذه الفترة');
+                    throw new \Exception('property_unavailable');
                 }
 
                 // تحديث حالة الحجز
@@ -112,7 +112,6 @@ class ReservationService
 
     public function getAvailableDaysForUnit($unitId, $from, $to): array
     {
-        // تحويل التواريخ إلى كائنات Carbon
         $startDate = Carbon::parse($from)->startOfDay();
         $endDate = Carbon::parse($to)->endOfDay();
 
