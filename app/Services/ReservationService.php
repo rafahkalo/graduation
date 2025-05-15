@@ -25,13 +25,14 @@ class ReservationService
         $unit = Unit::where('id', $data['unit_id'])->first();
         $activeOffer = Offer::getActiveOfferForUnit($unit->id);
         $couponCode = $data['coupon_code'] ?? null;
+        $num_person =  $data['num_person'] ?? 0;
 
         $response['offer_id'] = $activeOffer?->id;
         if (isset($data['coupon_code'])) {
             $response['coupon_id'] = Coupon::where('code', $data['coupon_code'])->value('id');
         }
 
-        $priceCalculator = new PriceCalculator($unit, $activeOffer, $couponCode);
+        $priceCalculator = new PriceCalculator($unit, $activeOffer, $couponCode, $num_person);
         //السعر النهائي مطبق عليه العرض او الكوبون
         $finalPrice = $priceCalculator->calculate();
         //عمولة المنصة من المؤجر

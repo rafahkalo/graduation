@@ -20,6 +20,14 @@ class UnitController extends BaseController
         return $this->apiResponse(data: $result);
     }
 
+    public function indexForAdmin(): JsonResponse
+    {
+        $status = request()->query('status') ?? 'wait';
+        $result = $this->unitService->index(request()->per_page ?? 8, $status);
+
+        return $this->apiResponse(data: $result);
+    }
+
     public function show(string $id): JsonResponse
     {
         $result = $this->unitService->show($id);

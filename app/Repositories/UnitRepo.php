@@ -17,7 +17,7 @@ class UnitRepo extends CoreRepository
         parent::__construct($unit);
     }
 
-    public function filterUnits(int $per_page): LengthAwarePaginator
+    public function filterUnits(int $per_page, string $status = 'active'): LengthAwarePaginator
     {
         $featureId = request('featureId') ?? null;
         $categoryId = request('categoryId') ?? null;
@@ -32,17 +32,13 @@ class UnitRepo extends CoreRepository
             ->allowedSorts(['created_at'])
             ->allowedIncludes('images', 'features', 'category', 'property.location', 'user');
 
-        if (Auth::guard('api_admin')->check()) {
-            return $query->paginate($per_page);
-        }
-
         if (Auth::guard('api')->check()) {
             $query->where('user_id', Auth::id());
         } elseif (Auth::guard('api_tenant')->check()) {
-            $query->where('status', 'active');
+            $query->where('status', $status);
 
         } else {
-            $query->where('status', 'active');
+            $query->where('status', $status);
         }
 
         if ($featureId) {

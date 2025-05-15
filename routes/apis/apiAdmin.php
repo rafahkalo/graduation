@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AdminController;
+use App\Http\Controllers\BusinessReviewController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\propertySection\CategoryController;
@@ -35,4 +36,7 @@ Route::middleware(['auth:api_admin', 'localization'])->group(function () {
     Route::resource('unit', UnitController::class)->only(['index', 'show', 'update']);
     Route::post('test-coupon', [CouponController::class, 'testCoupon']);
     Route::resource('coupon', CouponController::class)->only(['index', 'show']);
+    Route::get('/units-waiting', [UnitController::class, 'indexForAdmin']);
+    Route::get('reviews', [BusinessReviewController::class, 'index']);
+    Route::get('businessReviews', [BusinessReviewController::class, 'businessReviews']);
 });

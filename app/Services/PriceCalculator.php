@@ -10,20 +10,22 @@ class PriceCalculator
 {
     protected $unit;
     protected $activeOffer;
+    protected $num_person;
     protected $couponCode;
     protected $couponDiscountAmount = 0;
     protected $offerDiscountAmount = 0;
 
-    public function __construct(Unit $unit, ?Offer $activeOffer, ?string $couponCode)
+    public function __construct(Unit $unit, ?Offer $activeOffer, ?string $couponCode, $num_person = 0)
     {
         $this->unit = $unit;
         $this->activeOffer = $activeOffer;
         $this->couponCode = $couponCode;
+        $this->num_person = $num_person;
     }
 
     public function calculate(): float
     {
-        $price = $this->unit->price;
+        $price = $this->unit->price + ($this->unit->price_per_person * $this->num_person);
 
         if ($this->activeOffer) {
             $priceBefore = $price;

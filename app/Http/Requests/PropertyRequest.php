@@ -28,6 +28,7 @@ class PropertyRequest extends BaseRequest
             'street_width' => 'nullable|integer|min:0|max:100',
             'space' => 'nullable|numeric|min:0',
             'num_person' => 'required|numeric|min:0',
+            'price_per_person' => 'required|numeric|min:0',
             'unit_id' => [
                 'sometimes',
                 'exists:units,id',

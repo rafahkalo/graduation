@@ -13,6 +13,17 @@ class BusinessReviewService
     {
     }
 
+    public function index(int $per_page): \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\LengthAwarePaginator
+    {
+        $with = ['tenant', 'user'];
+
+        return $this->businessReviewRepo->index(
+            per_page: $per_page,
+            filters: [],
+            with: $with
+        );
+    }
+
     public function store(array $data)
     {
         return $this->businessReviewRepo->updateOrCreate(

@@ -10,6 +10,7 @@ use App\Repositories\PropertyRepo;
 use App\Repositories\propertySection\UnitFeaturesRepo;
 use App\Services\propertySection\FeatureService;
 use App\Traits\Media;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 
 class PropertyService
@@ -27,7 +28,7 @@ class PropertyService
     ) {
     }
 
-    public function index(int $per_page)
+    public function index(int $per_page): LengthAwarePaginator
     {
         return $this->propertyRepo->filterProperties($per_page);
     }

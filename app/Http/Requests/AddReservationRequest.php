@@ -32,6 +32,12 @@ class AddReservationRequest extends BaseRequest
                 'date',
                 'after:from',
             ],
+
+            // Gift-related fields
+            'is_gift'          => ['nullable', 'boolean'],
+            'gifted_to_email'  => ['required_if:is_gift,1', 'email'],
+            'gifted_user_name'  => ['required_if:is_gift,1', 'string'],
+            'gift_message'     => ['nullable', 'string', 'max:500'],
         ];
     }
 }

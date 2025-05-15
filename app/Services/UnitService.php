@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Unit;
 use App\Repositories\UnitRepo;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -21,13 +22,15 @@ class UnitService
         if (!isset($data['unit_id'])) {
             return $this->unitRepo->create($data);
         } else {
+            $data['status'] = 'wait';
+
             return $this->unitRepo->update($data, $data['unit_id']);
         }
     }
 
-    public function index(int $per_page)
+    public function index(int $per_page, string $status = 'wait'): LengthAwarePaginator
     {
-        return $this->unitRepo->filterUnits($per_page);
+        return $this->unitRepo->filterUnits($per_page, $status);
     }
 
     public function show(string $id)

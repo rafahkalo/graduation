@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->enum('status', ['cancel', 'accept', 'pending', 'payment_pending'])->default('pending');
             $table->date('from')->nullable();
             $table->date('to')->nullable();
+            $table->integer('num_person')->default(0);
 
             $table->decimal('lessor_commission', 10, 3)->default(0); //عمولة المؤجر
             $table->decimal('lessor_commission_amount', 10, 2)->default(0); //مبلغ عمولة المؤجر
@@ -59,6 +60,13 @@ return new class extends Migration {
                 ->nullable()
                 ->constrained()
                 ->onDelete('no action');
+
+            $table->boolean('is_gift')->default(false); // هل الحجز هدية؟
+            $table->foreignUuid('gifted_to_user_id')->nullable()->constrained('tenants')->nullOnDelete();
+            $table->string('gifted_user_name')->nullable();
+            $table->string('gifted_to_email')->nullable();
+            $table->string('gift_message')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

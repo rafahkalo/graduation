@@ -12,6 +12,13 @@ class BusinessReviewController extends BaseController
     {
     }
 
+    public function index(): JsonResponse
+    {
+        $result = $this->businessReviewService->index(request()->per_page ?? 8);
+
+        return $this->apiResponse(data: $result);
+    }
+
     public function store(BusinessReviewRequest $request): JsonResponse
     {
         $validatedData = $request->validated();
@@ -20,9 +27,12 @@ class BusinessReviewController extends BaseController
         return $this->apiResponse(data: $result);
     }
 
+    /*
+     * المؤجرين الاعلى تقييما للأقل
+     */
     public function businessReviews(): JsonResponse
     {
-        $result = $this->businessReviewService->businessReviews(request()->per_page ?? 8);
+        $result = $this->businessReviewService->businessReviews();
 
         return $this->apiResponse(data: $result);
     }

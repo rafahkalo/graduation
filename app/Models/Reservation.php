@@ -14,6 +14,7 @@ class Reservation extends Model
         'status',
         'from',
         'to',
+        'num_person',
         'lessor_commission',
         'lessor_commission_amount',
         'lessor_amount',
@@ -28,5 +29,10 @@ class Reservation extends Model
         'user_id',
         'tenant_id',
         'unit_id',
+        'is_gift',
+        'gifted_to_user_id',
+        'gifted_user_name',
+        'gifted_to_email',
+        'gift_message'
     ];
 }

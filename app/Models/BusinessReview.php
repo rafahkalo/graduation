@@ -18,6 +18,12 @@ class BusinessReview extends Model
 
     public function tenant(): BelongsTo
     {
-        return $this->belongsTo(Tenant::class, 'tenant_id');
+        return $this->belongsTo(Tenant::class, 'tenant_id')->select(['id', 'first_name', 'last_name', 'image']);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id')->select(['id','first_name','last_name','company_name','phone',
+            'about', 'image', ]);
     }
 }
