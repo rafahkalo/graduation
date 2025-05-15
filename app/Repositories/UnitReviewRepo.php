@@ -16,13 +16,19 @@ class UnitReviewRepo
             ->where('unit_id', $data['unit_id'])
             ->exists();
 
-        $unitReview = UnitReview::updateOrCreate(
-            [
-                'tenant_id' => $data['tenant_id'],
-                'unit_id' => $data['unit_id'],
-            ],
-            $data
-        );
+        $unitReview = UnitReview::create([
+            'unit_id'        => $data['unit_id'],
+            'tenant_id'      => $data['tenant_id'],
+            'reservation_id' => $data['reservation_id'],
+            'reason'         => $data['reason'],
+            'rating'         => $data['rating'],
+            'cleanliness'    => $data['cleanliness'],
+            'accuracy'       => $data['accuracy'],
+            'check_in'       => $data['check_in'],
+            'communication'  => $data['communication'],
+            'value'          => $data['value'],
+        ]);
+
 
         $this->updateUnitRatingDetails($unitReview, $exists);
 

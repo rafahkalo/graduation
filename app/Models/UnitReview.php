@@ -21,6 +21,7 @@ class UnitReview extends Model
         'check_in',
         'communication',
         'value',
+        'reservation_id'
     ];
 
     protected $hidden = [

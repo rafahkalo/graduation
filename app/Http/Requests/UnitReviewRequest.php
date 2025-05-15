@@ -14,6 +14,7 @@ class UnitReviewRequest extends BaseRequest
             'communication' => 'required|numeric|between:1,5',
             'value' => 'required|numeric|between:1,5',
             'reason' => 'nullable|string',
+            'reservation_id' => 'required|exists:reservations,id',
         ];
     }
 }

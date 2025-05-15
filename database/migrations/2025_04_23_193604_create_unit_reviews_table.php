@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Reservation;
 use App\Models\Tenant;
 use App\Models\Unit;
 use Illuminate\Database\Migrations\Migration;
@@ -14,8 +15,20 @@ return new class extends Migration {
     {
         Schema::create('unit_reviews', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignIdFor(Unit::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Tenant::class)->constrained()->cascadeOnDelete();
+
+            $table->foreignIdFor(Unit::class)->nullable()
+                ->constrained()
+                ->onDelete('no action');
+
+            $table->foreignIdFor(Tenant::class)->nullable()
+                ->constrained()
+                ->onDelete('no action');
+
+            $table->foreignIdFor(Reservation::class)
+                ->nullable()
+                ->constrained()
+                ->onDelete('no action');
+
             $table->text('reason')->nullable();
             $table->decimal('rating', 3, 1);
             $table->decimal('cleanliness', 3, 1)->default(0);
