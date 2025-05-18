@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Admin;
+use App\Models\Tenant;
+use App\Models\User;
+
 return [
 
     /*
@@ -40,6 +44,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
+
+        'api_admin' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
+        ],
+
+        'api_tenant' => [
+            'driver' => 'jwt',
+            'provider' => 'tenants',
+        ],
     ],
 
     /*
@@ -62,7 +81,17 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => env('AUTH_MODEL', User::class),
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class,
+        ],
+
+        'tenants' => [
+            'driver' => 'eloquent',
+            'model' => Tenant::class,
         ],
 
         // 'users' => [
