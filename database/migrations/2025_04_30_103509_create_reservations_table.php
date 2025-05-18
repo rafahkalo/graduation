@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->date('to')->nullable();
             $table->integer('num_person')->default(0);
 
-            $table->decimal('lessor_commission', 10, 3)->default(0); //عمولة المؤجر
+            $table->decimal('lessor_commission', 10, 3)->default(0); //نسبة مئوية لعمولة المؤجر
             $table->decimal('lessor_commission_amount', 10, 2)->default(0); //مبلغ عمولة المؤجر
             $table->decimal('lessor_amount', 10, 2)->default(0); // المبلغ الذي سوف سيتلمه المؤجر
 
@@ -64,7 +64,7 @@ return new class extends Migration {
             $table->boolean('is_gift')->default(false); // هل الحجز هدية؟
             $table->foreignUuid('gifted_to_user_id')->nullable()->constrained('tenants')->nullOnDelete();
             $table->string('gifted_user_name')->nullable();
-            $table->string('gifted_to_email')->nullable();
+            $table->string('gifted_to_phone')->nullable();
             $table->string('gift_message')->nullable();
 
             $table->softDeletes();

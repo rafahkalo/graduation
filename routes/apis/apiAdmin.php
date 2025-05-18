@@ -4,6 +4,7 @@ use App\Http\Controllers\auth\AdminController;
 use App\Http\Controllers\BusinessReviewController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FinancialTransactionsController;
 use App\Http\Controllers\propertySection\CategoryController;
 use App\Http\Controllers\propertySection\DirectionController;
 use App\Http\Controllers\propertySection\FeatureController;
@@ -39,4 +40,5 @@ Route::middleware(['auth:api_admin', 'localization'])->group(function () {
     Route::get('/units-waiting', [UnitController::class, 'indexForAdmin']);
     Route::get('reviews', [BusinessReviewController::class, 'index']);
     Route::get('businessReviews', [BusinessReviewController::class, 'businessReviews']);
+    Route::resource('financial-transaction', FinancialTransactionsController::class)->only(['index', 'update', 'show']);
 });

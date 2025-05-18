@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\ActiveUnit;
 use App\Rules\ReservationStatusPending;
+use App\Rules\SaudiPhoneRule;
 
 class AddReservationRequest extends BaseRequest
 {
@@ -35,9 +36,16 @@ class AddReservationRequest extends BaseRequest
 
             // Gift-related fields
             'is_gift'          => ['nullable', 'boolean'],
-            'gifted_to_email'  => ['required_if:is_gift,1', 'email'],
+            'gifted_to_phone'  => ['required_if:is_gift,1', 'string' , new SaudiPhoneRule],
             'gifted_user_name'  => ['required_if:is_gift,1', 'string'],
             'gift_message'     => ['nullable', 'string', 'max:500'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'gifted_to_phone' => $this->gifted_to_phone ? SaudiPhoneRule::formatSaudiPhone($this->gifted_to_phone) : $this->gifted_to_phone,
+        ]);
     }
 }

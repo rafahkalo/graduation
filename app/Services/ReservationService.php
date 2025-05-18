@@ -6,16 +6,20 @@ use App\Const\Commission;
 use App\Models\Coupon;
 use App\Models\Offer;
 use App\Models\Reservation;
+use App\Models\Tenant;
 use App\Models\Unit;
 use App\Repositories\ReservationRepo;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class ReservationService
 {
-    public function __construct(private ReservationRepo $reservationRepo)
+    public function __construct(
+        private ReservationRepo $reservationRepo,
+    private FinancialTransactionsService $financialTransactionsService)
     {
     }
 
@@ -44,11 +48,14 @@ class ReservationService
 
         //عمولة المنصة على المستأجر
         $response['tenant_commission'] = Commission::commission_maskani_tenant;
+
         $response['tenant_commission_amount'] = $finalPrice * $response['tenant_commission'];
         $response['tenant_amount'] = $finalPrice + $response['tenant_commission_amount'];
         $response['platform_commission_amount'] = $response['tenant_commission_amount'] + $response['lessor_commission_amount'];
 
         $response['reservation_source'] = $data['reservation_source'];
+        $response['num_person'] = $data['num_person'];
+        $response['user_id'] = $unit->user_id;
 
         if (Auth::guard('api_tenant')->check()) {
             $response['tenant_id'] = Auth::id();
@@ -62,53 +69,83 @@ class ReservationService
         }
     }
 
-    public function confirmReservationService(array $data): array
+    public function confirmReservation(array $data): array
     {
         $lock = Cache::lock('property_booking:' . $data['unit_id'], 10);
 
         if (!$lock->get()) {
-            throw new \Exception('try_again');
+            throw new Exception('try_again');
         }
 
         try {
             DB::transaction(function () use ($data) {
-                // تحقق من وجود حجوزات متداخلة
-                $overlapping = Reservation::where('unit_id', $data['unit_id'])
-                    ->where('status', 'accept')
-                    ->where(function ($query) use ($data) {
-                        $query->whereBetween('from', [$data['from'], $data['to']])
-                            ->orWhereBetween('to', [$data['from'], $data['to']])
-                            ->orWhere(function ($q) use ($data) {
-                                $q->where('from', '<', $data['from'])
-                                    ->where('to', '>', $data['to']);
-                            });
-                    })
-                    ->exists();
-
-                if ($overlapping) {
-                    throw new \Exception('property_unavailable');
+                if ($this->hasOverlappingReservations($data['unit_id'], $data['from'], $data['to'])) {
+                    throw new Exception('property_unavailable');
                 }
 
-                // تحديث حالة الحجز
-                Reservation::query()->where('id', $data['reservation_id'])->update([
-                    'status' => 'accept',
-                    'updated_at' => now(),
-                ]);
+                $extra = [];
 
-                // تحديث العداد
-                Unit::where('id', $data['unit_id'])->increment('bookings_count');
+                if (isset($data['is_gift'])) {
+
+                    $tenant = Tenant::updateOrCreate(['first_name' => $data['gifted_user_name'], 'phone' => $data['gifted_to_phone']]);
+                    Tenant::updateOrCreate(
+                        ['phone' => $data['gifted_to_phone']],
+                        ['phone' => $data['gifted_to_phone']]
+                    );
+
+                    $extra['is_gift'] = true;
+                    $extra['gifted_to_user_id'] = $tenant->id;
+                    $extra['gifted_to_phone'] = $data['gifted_to_phone'];
+                    $extra['gifted_user_name'] = $data['gifted_user_name'];
+                    $extra['gift_message'] = $data['gift_message'];
+                }
+
+                $this->acceptReservation($data['reservation_id'], $extra);
+
+                $this->acceptReservation($data['reservation_id']);
+                $this->incrementUnitBookingCount($data['unit_id']);
+                $this->financialTransactionsService->create($data['reservation_id']);
+
             });
 
-            // نرجع بيانات بسيطة فقط
             return [
                 'reservation_id' => $data['reservation_id'],
                 'unit_id' => $data['unit_id'],
                 'status' => 'accept',
             ];
-
         } finally {
             $lock->release();
         }
+    }
+
+    private function hasOverlappingReservations(string $unitId, string $from, string $to): bool
+    {
+        return Reservation::where('unit_id', $unitId)
+            ->where('status', 'accept')
+            ->where(function ($query) use ($from, $to) {
+                $query->whereBetween('from', [$from, $to])
+                    ->orWhereBetween('to', [$from, $to])
+                    ->orWhere(function ($q) use ($from, $to) {
+                        $q->where('from', '<', $from)
+                            ->where('to', '>', $to);
+                    });
+            })
+            ->exists();
+    }
+
+    private function acceptReservation(string $reservationId, array $extraAttributes = []): void
+    {
+        $attributes = array_merge([
+            'status' => 'accept',
+            'updated_at' => now(),
+        ], $extraAttributes);
+
+        Reservation::where('id', $reservationId)->update($attributes);
+    }
+
+    private function incrementUnitBookingCount(string $unitId): void
+    {
+        Unit::where('id', $unitId)->increment('bookings_count');
     }
 
     public function getAvailableDaysForUnit($unitId, $from, $to): array

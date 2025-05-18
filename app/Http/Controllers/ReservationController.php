@@ -27,7 +27,7 @@ class ReservationController extends BaseController
         $validatedData = $request->validated();
 
         try {
-            $result = $this->reservationService->confirmReservationService($validatedData);
+            $result = $this->reservationService->confirmReservation($validatedData);
 
             return $this->apiResponse(data: $result, message: 'booking_success', statusCode: 201);
         } catch (\Exception $e) {
