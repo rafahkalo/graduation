@@ -3,6 +3,7 @@
 use App\Http\Middleware\ApiHeaders;
 use App\Http\Middleware\EnsureUserIsVerified;
 use App\Http\Middleware\LanguageSwitcher;
+use App\Http\Middleware\ValidatePaymentSignature;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'localization' => LanguageSwitcher::class,
             'is_verified' => EnsureUserIsVerified::class,
+            'signed.payment' => ValidatePaymentSignature::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

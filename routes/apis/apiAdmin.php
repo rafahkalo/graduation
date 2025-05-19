@@ -40,5 +40,8 @@ Route::middleware(['auth:api_admin', 'localization'])->group(function () {
     Route::get('/units-waiting', [UnitController::class, 'indexForAdmin']);
     Route::get('reviews', [BusinessReviewController::class, 'index']);
     Route::get('businessReviews', [BusinessReviewController::class, 'businessReviews']);
+
+
+    Route::post('payment', [FinancialTransactionsController::class, 'payment']);
     Route::resource('financial-transaction', FinancialTransactionsController::class)->only(['index', 'update', 'show']);
 });

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('tenant_commission_amount', 10, 2)->default(0); //مبلغ عمولة المستأجر
             $table->decimal('tenant_amount', 10, 2)->default(0); // المبلغ الذي سوف يدفعه المستأجر
             $table->decimal('platform_commission_amount', 10, 2)->default(0); //مبلغ عمولة المنصة من المؤجر والمستأجر
-            $table->enum('status',  ['pending', 'paid'])->default('pending');
+            $table->enum('status',  ['pending', 'paid', 'sent'])->default('pending');
             $table->timestamps();
         });
     }
